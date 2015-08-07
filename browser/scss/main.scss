@@ -1,3 +1,4 @@
+/*  begin fsg defaults */
 * {
   box-sizing: border-box;
 }
@@ -14,14 +15,20 @@ body {
   }
 }
 
-#main {
-  padding-top: 60px;
-  width: 1200px;
-  margin: 0 auto;
-}
-
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+/* end fsg defaults */
+
+
+@import 'directives/main-graph';
+
+/*
+#graph {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+*/

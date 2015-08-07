@@ -1,4 +1,20 @@
-<section id="home">
-    <fullstack-logo></fullstack-logo>
-    <rando-greeting></rando-greeting>
+<!--
+	ui-view gets rendered as this when in the home state, url '/'
+
+	inside is the mainGraph directive
+-->
+<section id='home'>
+
+	
+	<div>
+		Stock Symbol:<input type='text' ng-model='stockSymbol'>
+		State Date:<input type='date' ng-model='startDate'>
+		End Date:<input type='date' ng-model='endDate'>
+		<div class='dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET NEW DATA</div>
+	</div>
+	<main-graph data="stockClose"></main-graph>
+
+
 </section>
+
+
