@@ -1,6 +1,6 @@
 //don't forget to change the template url and selects back to main graph
-/* data
-app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+// data
+app.directive('mainGraphBACKUP', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
 
     return {
       restrict: 'E',
@@ -33,9 +33,9 @@ app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $stat
               //only get keys that refer to different google trend search queries 
               //[apple watch, apple inc, iphone, itunes, etc]
             }));
-*/
+
 //------ AXES ----------------------
-/*
+
         var xAxis = d3.svg.axis()
                           .scale(xScale)
                           .orient("bottom");
@@ -56,9 +56,9 @@ app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $stat
         graph.append("g")
             .attr("class", "y axis")
             .call(yAxis);
-*/
+
 //------ STOCK PRICE LINE ---------------------------
-/*
+
         var lineFunc = d3.svg.line()
           .x(function(d) {
             return xScale(new Date(d.Week));
@@ -95,9 +95,8 @@ app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $stat
             d.total = d.searches[0].y1+d.searches[1].y1+d.searches[2].y1+d.searches[3].y1+d.searches[4].y1
             // ^^^ make this flexible later but this should work for now
           });
-*/
 //------ STACKED BARS -------------------------
-/*
+
         var Mentions = graph.selectAll(".Mentions")
             .data(data)
             .enter().append("g")
@@ -111,9 +110,8 @@ app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $stat
             .attr("y", function(d) { return yScale(d.y1)/4 + (height)/1.3333; })
             .attr("height", function(d) { return yScale(d.y0)/4 - yScale(d.y1)/4; })
             .style("fill", function(d) { return colorScale(d.name); });
-*/
-//------ LEGEND ---------------------------  
-/*      
+
+//------ LEGEND ---------------------------       
         var legend = graph.selectAll(".legend")
             .data(colorScale.domain().slice().reverse())
             .enter().append("g")
@@ -160,4 +158,4 @@ app.directive('mainGraph', function ($rootScope, AuthService, AUTH_EVENTS, $stat
         d3.select(window).on('resize', resize); 
   }
 }});
-*/
+

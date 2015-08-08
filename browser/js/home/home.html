@@ -8,8 +8,17 @@
 		End Date:<input type='date' ng-model='endDate'>
 		<div class='dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET NEW DATA</div>
 	</div>
-	<main-graph data="stockClose"></main-graph>
-
+	<div>
+		Trend Term:<input type='text' ng-model='trendTerm'>
+		<div 	class='dataButton' 
+				ng-click='getNewTrendData(trendTerm, startDate, endDate)'>
+				GET NEW TREND DATA
+		</div>
+	</div>
+	<main-graph stockdata="stockClose" trenddata='trendData'></main-graph>
+<br>
+<br>
+<div>{{trendData}}</div>
 
 </section>
 

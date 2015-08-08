@@ -6,8 +6,8 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('dataCtrl', function($scope, yahooFactory) {
-	//example data in the format the YQL would return from yahooFactory.getAAPL
+app.controller('dataCtrl', function($scope, apiFactory) {
+	//example data in the format the YQL returns
     $scope.stockClose = [
      {"Close": "59","Date": "2015-08-04"},{"Close": "57","Date": "2015-08-03"},{"Close": "58","Date": "2015-07-31"},
      {"Close": "55","Date": "2015-07-30"},{"Close": "53","Date": "2015-07-29"},{"Close": "52","Date": "2015-07-28"},
@@ -50,14 +50,20 @@ app.controller('dataCtrl', function($scope, yahooFactory) {
      {"Close": "35","Date": "2015-02-14"},{"Close": "32","Date": "2015-02-13"},{"Close": "30","Date": "2015-02-12"}		]; 
 
     $scope.getNewData = function(stockSymbol, startDate, endDate){
-		return yahooFactory.getNewStockData(stockSymbol, startDate, endDate)
+		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
 		.then(function(newStockData){
 			return	$scope.stockClose = newStockData;
 		})
 	}
+	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
+		return apiFactory.getTrendData(trendTerm, startDate, endDate)
+		.then(function(newTrendData){
+			return $scope.trendData = newTrendData;
+		})
+	}
 })
 
-app.factory('yahooFactory', function($http){
+app.factory('apiFactory', function($http){
 	return {
 		getNewStockData: function(stockSymbol, startDate, endDate){
 			if(!startDate) {
@@ -74,6 +80,21 @@ app.factory('yahooFactory', function($http){
 			.then(function(stockPrices){
 				return stockPrices.data.query.results.quote
 			})
+		},
+		getTrendData: function(trendTerm, startDate, endDate){
+			if(!startDate) {
+				var d = new Date();
+				d.setDate(d.getDate()-165);
+				startDate = d;
+ 			}
+			if(!endDate) endDate = new Date();
+			startDate = moment(startDate).format("YYYY-MM-DD"); //2015-06-01
+			endDate = moment(endDate).format("YYYY-MM-DD"); //2015-06-01
+
+			return $http.post('http://localhost:1337/api/google')
+			.then(function(trendTermData){
+				return trendTermData.data
+			})
 		}
 	}
 });
@@ -82,7 +103,8 @@ app.directive('mainGraph', function () {
     return {
       restrict: 'E',
       scope: {
-      	data: '='
+      	stockdata: '=',
+      	trenddata: '='
       },
       templateUrl: 'js/common/directives/main-graph/main-graph.html',
       controller: 'dataCtrl',
@@ -92,12 +114,13 @@ app.directive('mainGraph', function () {
 			var width = 600+(2*margin);
 			var height = 400+(2*margin);
 			var xScale = d3.time.scale()
-			    .domain( [new Date(scope.data[scope.data.length - 1].Date), new Date(scope.data[0].Date)] )
+			    .domain( [new Date(scope.stockdata[scope.stockdata.length - 1].Date), new Date(scope.stockdata[0].Date)] )
 			    .range([0, width]);
 			var yScale = d3.scale.linear()
-			    .domain( [ .95*d3.min(scope.data, function(d) { return d.Close; }), 1.05*d3.max(scope.data, function(d) { return d.Close; })] )
+			    .domain( [ .95*d3.min(scope.stockdata, function(d) { return d.Close; }), 1.05*d3.max(scope.stockdata, function(d) { return d.Close; })] )
 			    .range([height, 0])
 			    .nice();
+			
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
                           .tickSize(-height)
@@ -110,9 +133,6 @@ app.directive('mainGraph', function () {
             var svg = d3.select('svg')
                     	.attr("width", width+(2*margin))
                 		.attr("height", height+(2*margin));
-                	// .append('g')
-                	// 	.attr("transform", "translate("+margin+","+margin+")");
-
             svg.append('g')
             	.attr('class', "x axis")
             	.attr('stroke', 'black')
@@ -132,28 +152,28 @@ app.directive('mainGraph', function () {
     			.attr('fill', 'none')
     			.attr('stroke-width', 3)
           		.attr('stroke', "#77876B")
-    			.attr("d", makeLine(scope.data));
+    			.attr("d", makeLine(scope.stockdata));
 //-------- CHANGE GRAPH FOR NEW DATA -----------            
             var changeStockLine = function(){
-		        xScale.domain([new Date(scope.data[scope.data.length - 1].Date), new Date(scope.data[0].Date)] );
-		        yScale.domain([ .95*d3.min(scope.data, function(d) { return d.Close; }), 1.05*d3.max(scope.data, function(d) { return d.Close; })] );
+		        xScale.domain([new Date(scope.stockdata[scope.stockdata.length - 1].Date), new Date(scope.stockdata[0].Date)] );
+		        yScale.domain([ .95*d3.min(scope.stockdata, function(d) { return d.Close; }), 1.05*d3.max(scope.stockdata, function(d) { return d.Close; })] );
 // new stock price line
 		        var newLine = svg.selectAll('path.line')
-		        				.data(scope.data);
+		        				.data(scope.stockdata);
 		        newLine.exit().remove()
 		        newLine.enter().append('line')
 		        	.attr("class", "line")
     				.attr('fill', 'none')
     				.attr('stroke-width', 3)
           			.attr('stroke', "#77876B")
-    				.attr("d", makeLine(scope.data));
+    				.attr("d", makeLine(scope.stockdata));
     			newLine.transition()
     				.duration(2000)
                 	.delay(function(d,i){ return i*10 })
-                	.attr('d', makeLine(scope.data))
+                	.attr('d', makeLine(scope.stockdata))
 // new X axis
                	var newX = svg.selectAll(".x.axis")
-               					.data(scope.data);  
+               					.data(scope.stockdata);  
                	newX.attr('class', "x axis")
 	            	.attr("transform", "translate(0," + height + ")")
 	            	.call(xAxis);
@@ -161,19 +181,19 @@ app.directive('mainGraph', function () {
     				.duration(2000);
 // new Y axis
 				var newY = svg.selectAll(".y.axis")
-								.data(scope.data);
+								.data(scope.stockdata);
     			newY.attr('class', "y axis")
                	    .call(yAxis);
     			newY.transition()
     				.duration(2000);
 		    }
-            scope.$watch('data', function(newValues, oldValues){
+            scope.$watch('stockdata', function(newValues, oldValues){
 	            if(newValues == oldValues) {
 	            	return;
 	        	}
 	        	if(newValues) {
 	            	console.log('watching new values come in: ', newValues)
-	            	scope.data = newValues
+	            	scope.stockdata = newValues
 	            	changeStockLine()
 	        	}
 	        	return
