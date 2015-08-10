@@ -167,7 +167,7 @@ app.factory('apiFactory', function($http){
 				return stockPrices.data.query.results.quote
 			})
 		},
-		getTrendData: function(trendTerm1, trendTerm2, trendTerm3, startDate, endDate){
+		getTrendData: function(trendTerm, startDate, endDate){
 			if(!startDate) {
 				var d = new Date();
 				d.setDate(d.getDate()-165);
@@ -177,7 +177,7 @@ app.factory('apiFactory', function($http){
 			startDate = moment(startDate).format("YYYY-MM-DD"); //2015-06-01
 			endDate = moment(endDate).format("YYYY-MM-DD"); //2015-06-01
 
-			return $http.post('http://localhost:1337/api/google/'+trendTerm1+'/'+startDate+'/'+endDate)
+			return $http.post('http://localhost:1337/api/google/'+trendTerm+'/'+startDate+'/'+endDate)
 			.then(function(trendTermData){
 				return trendTermData.data
 			})
@@ -218,22 +218,29 @@ app.directive('mainGraph', function () {
                           .orient("left");
       var svg = d3.select('svg')
                     	.attr("width", width+(4*margin))
-                		  .attr("height", height+(3*margin));
+                		  .attr("height", height+(4*margin));
       var graphBackground = svg.append('rect')
                                 .attr('class', 'graphBackground')
                                 .attr("width", width)
                                 .attr("height", height)
-                                .attr('transform', "translate("+ (2*margin)+"," + margin + ")")
-                                .attr('opacity', ".1");
+                                .attr('transform', "translate("+ (2*margin)+"," + (2*margin) + ")")
+                                .attr('opacity', ".5");
+      svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y",  (margin))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "24px") 
+        .text("Stock Price vs Google Searches");
+
       svg.append('g')
       	.attr('class', "x axis")
       	.attr('stroke', 'black')
-      	.attr("transform", "translate(0," + (height+margin+3) + ")")
+      	.attr("transform", "translate(0," + (height+(2*margin)+3) + ")")
       	.call(xAxis)
       svg.append('g')
       	.attr('class', "y axis stock")
       	.attr('stroke', 'black')
-        .attr("transform", "translate("+ (2*margin)+"," + margin + ")")
+        .attr("transform", "translate("+ (2*margin)+"," + (2*margin) + ")")
         .call(yAxis)
                        	
 //------- GOOGLE TREND BARS ON GRAPH -----------
@@ -255,7 +262,7 @@ app.directive('mainGraph', function () {
       svg.append('g')
         .attr('class', "y axis trend")
         .attr('stroke', 'black')
-        .attr("transform", "translate("+yAxisTrans+","+margin+")")
+        .attr("transform", "translate("+yAxisTrans+","+(2*margin)+")")
         .call(yAxisTrend) 
 
       svg.selectAll("rect")
@@ -267,7 +274,7 @@ app.directive('mainGraph', function () {
                 .attr("y", function(d) { return height - yTrendScale(d[3]); })
                 .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length })
                 .attr("height", function(d) { return yTrendScale(d[3]); })
-                .attr("transform", "translate("+(margin)+","+margin+")")
+                .attr("transform", "translate("+(margin)+","+(2*margin)+")")
                 .attr('opacity', ".5");
       
 //------- LINE ON GRAPH ----------------------
@@ -281,7 +288,7 @@ app.directive('mainGraph', function () {
                     			 .attr('stroke-width', 3)
                           .attr('stroke', "#77876B")
                     			 .attr("d", makeLine(scope.stockdata))
-                           .attr("transform", "translate("+2*margin+","+margin+")");
+                           .attr("transform", "translate("+2*margin+","+(2*margin)+")");
 //-------- CHANGE GRAPH FOR NEW DATA -----------            
       var changeStockLine = function(){
       xScale.domain([new Date(scope.stockdata[scope.stockdata.length - 1].Date), new Date(scope.stockdata[0].Date)] );
@@ -291,12 +298,12 @@ app.directive('mainGraph', function () {
       				        .data(scope.stockdata);
       newLine.exit().remove()
       newLine.enter().append('line')
-          	 .attr("class", "line")
-			       .attr('fill', 'none')
-			       .attr('stroke-width', 3)
-    			   .attr('stroke', "#77876B")
-			.attr("d", makeLine(scope.stockdata))
-      .attr("transform", "translate("+margin+", 0)");
+   //        	 .attr("class", "line")
+			//        .attr('fill', 'none')
+			//        .attr('stroke-width', 3)
+   //  			   .attr('stroke', "#77876B")
+			// .attr("d", makeLine(scope.stockdata))
+   //    .attr("transform", "translate("+margin+", 0)");
 		  newLine.transition()
 			       .duration(2000)
           	 .delay(function(d,i){ return i*10 })
@@ -305,7 +312,7 @@ app.directive('mainGraph', function () {
      	var newX = svg.selectAll(".x.axis")
      					.data(scope.stockdata);  
      	newX.attr('class', "x axis")
-    	     .attr("transform", "translate("+ 2*margin+"," + (height+margin+3) + ")")
+    	     .attr("transform", "translate("+ 2*margin+"," + (height+(2*margin)+3) + ")")
     	     .call(xAxis); 
       newX.transition()
           .duration(2000);
@@ -329,19 +336,19 @@ var changeBars = function(){
       newBars.exit().remove()
 
       newBars.enter().append('rect.bar')
-                .attr('class','bar')
-                .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
-                .attr("y", function(d) { return height - yTrendScale(d[3]); })
-                .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length })
-                .attr("height", function(d) { return yTrendScale(d[3]); })
-                .attr("transform", "translate("+(margin)+","+margin+")")
-                .attr('opacity', ".5");
+                // .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
+                // .attr("y", function(d) { return height - yTrendScale(d[3]); })
+                // .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length })
+                // .attr("height", function(d) { return yTrendScale(d[3]); })
+                // .attr("transform", "translate("+(5*margin)+","+margin+")")
+                // .attr('opacity', ".35");
 
       newBars.transition()
              .duration(2000)
              .delay(function(d,i){ return i*10 })
              .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
              .attr("y", function(d) { return height - yTrendScale(d[3]); })
+            .attr("transform", "translate("+(2.5*margin)+","+(2*margin)+")")
              .attr("height", function(d) { return yTrendScale(d[3]); });
              
 // new Y axis

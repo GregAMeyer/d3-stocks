@@ -1,10 +1,12 @@
-/*  begin fsg defaults */
+$googleBlue: #0266C8;
+$googleRed: #F90101;
+$googleYellow: #F2B50F;
+$googleGreen: #00933B;
+$silver: #ACACAC;
+
 * {
   box-sizing: border-box;
-}
-
-body {
-  /*background: #fdfdfd;*/
+  font-family: "Khula"
 }
 html {
     height: 100%;
@@ -32,8 +34,8 @@ body {
 /* end fsg defaults */
 
 body {
-  background: linear-gradient(to top right, white , #D1FFE0);
+  background-image: url('../scss/mosaicGold.jpg');
+  background-size: 100%;
 }
-
 
 @import 'directives/main-graph';

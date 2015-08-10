@@ -1,45 +1,65 @@
 
 #mainGraph {
 
-    /*border: 1px solid black;*/
     margin-left: 250px;
     margin-top: 20px;
 
     path.line {
       fill: none;
-      stroke: #0066FF;
-      stroke-width: 1.5px;
+      stroke: white;
+      stroke-width: 1px;
     }
 
     path.area {
-      fill: #e7e7e7;
+      /*fill: #e7e7e7;*/
     }
 
     .axis {
       shape-rendering: crispEdges;
+      stroke: white;
+      fill: white;
+    }
+
+    .axis text {
+        /*font-family: sans-serif;*/
+        stroke: none;
+        font-weight: 300;
     }
 
     .x.axis line {
+      stroke-width: 1px;
       stroke: #fff;
     }
 
-    /*.x.axis .minor {
+    .x.axis .minor {
       stroke-opacity: .5;
-    }*/
+    }
 
     .x.axis path {
       display: none;
     }
 
-    .y.axis line, .y.axis path {
-      fill: none;
-      stroke: #000;
+    .y.axis {
+      stroke: white;
     }
+    .y.axis line, .y.axis path {
+      stroke-width: 1px;
+      fill: none;
+      stroke: white;
+      color: white;
+    }
+
     rect.bar {
-      fill: #00CC00;
+      fill: $googleGreen;
 
     }
+
     rect.graphBackground {
       fill: black
+    }
+    text {
+      /*stroke: white;*/
+      stroke: none;
+      fill: white;
     }
 }
