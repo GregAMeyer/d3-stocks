@@ -2,7 +2,7 @@
 A stock-analysis tool for visualizing data not traditionally associated with stocks. Utilizes D3 to show the relationship between a stock price and a Google keyword search volume over time.
 ## Challenges
 There is no Google Trends API to gather data from.
-I figured out a way to grab the data from a particular URL page and turn it into something usable.
+I figured out that the data was available in an HTML script tag at the bottom of a particular Google URL. I was able to turn the data into something usable for my d3 visualization. Essentially I turned a particular Google URL into an API I could make cross-site requests to.
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
