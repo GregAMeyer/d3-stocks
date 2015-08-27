@@ -1,6 +1,6 @@
 # d3-stocks
 A stock-analysis tool for visualizing data not traditionally associated with stocks. Utilizes D3 to show the relationship between a stock price and a Google keyword search volume over time.
-## Chanllenges
+## Challenges
 There is no Google Trends API to gather data from.
 I figured out a way to grab the data from a particular URL page and turn it into something usable.
 ## Contributing
