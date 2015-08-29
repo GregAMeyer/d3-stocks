@@ -9,7 +9,7 @@ The purpose of this project is to allow each student to develop their own idea f
 
 ## Challenges
 There is no Google Trends API to gather data from.
-I figured out that the data was available in an HTML script tag at the bottom of a particular Google URL. I was able to turn the data into something usable for my d3 visualization. Essentially I turned a particular Google URL into an API I could make cross-site requests to.
+I figured out that the data was available in an HTML script tag at the bottom of a particular Google URL, but it was not in a usable format. I was able to use the data in my d3 visualization by converting the it into a string, and using the Function constructor to make an object out of it.
 
 ## Code Structure
 
