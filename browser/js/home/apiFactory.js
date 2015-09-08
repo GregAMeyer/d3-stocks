@@ -26,7 +26,7 @@ app.factory('apiFactory', function($http){
 			startDate = moment(startDate).format("YYYY-MM-DD"); //2015-06-01
 			endDate = moment(endDate).format("YYYY-MM-DD"); //2015-06-01
 
-			return $http.post('http://localhost:1337/api/google/'+trendTerm+'/'+startDate+'/'+endDate)
+			return $http.post('/api/google/'+trendTerm+'/'+startDate+'/'+endDate)
 			.then(function(trendTermData){
 				return trendTermData.data
 			})
