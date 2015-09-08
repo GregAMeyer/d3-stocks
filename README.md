@@ -31,3 +31,9 @@ We have used many open source technologies for completion of this project as fol
   * Node
   * Express
 
+####To Do Items
+* Make svg graph responsive to window size
+* Improve the user interface in general - Lighter colors, friendlier/rouder edges, title formatting, fonts, etc.
+* Support multiple google trend keywords via stacked bar chart
+* Incorporate other forms of social media such as Facebook mentions, instagram mentions, etc. (Twitter did not previously work)
+
