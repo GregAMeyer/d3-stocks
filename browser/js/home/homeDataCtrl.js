@@ -97,13 +97,15 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
   $scope.getNewData = function(stockSymbol, startDate, endDate){
 		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
 		.then(function(newStockData){
-			return	$scope.stockClose = newStockData;
+            $scope.stockClose = newStockData
+			return $scope.stockClose;
 		})
 	}
 	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
 		return apiFactory.getTrendData(trendTerm, startDate, endDate)
 		.then(function(newTrendData){
-			return $scope.trendData = newTrendData;
+            $scope.trendData = newTrendData;
+			return $scope.trendData; 
 		})
 	}
 })

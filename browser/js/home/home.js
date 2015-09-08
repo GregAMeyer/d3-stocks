@@ -52,7 +52,6 @@ app.directive('mainGraph', function () {
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
         .text("Stock Price vs Google Searches");
-
       svg.append('g')
       	.attr('class', "x axis")
       	.attr('stroke', 'black')
@@ -76,9 +75,7 @@ app.directive('mainGraph', function () {
                           .scale(yTrendScale)
                           .ticks(5)
                           .orient("right");
-
-          var x = 680;
-          var yAxisTrans = width+(2*margin);
+      var yAxisTrans = width+(2*margin);
 
       svg.append('g')
         .attr('class', "y axis trend")
