@@ -6,7 +6,6 @@ app.config(function ($stateProvider) {
     });
 });
 
-
 app.directive('mainGraph', function () {
     return {
       restrict: 'E',
@@ -133,6 +132,7 @@ app.directive('mainGraph', function () {
     	     .call(xAxis); 
       newX.transition()
           .duration(2000);
+// 
 // new Y axis
 			var newY = svg.selectAll(".y.axis.stock")
 							.data(scope.stockdata);
@@ -149,25 +149,17 @@ var changeBars = function(){
 // new bars
       var newBars = svg.selectAll('rect.bar')
                       .data(scope.trenddata);
-
       newBars.exit().remove()
 
       newBars.enter().append('rect.bar')
-                // .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
-                // .attr("y", function(d) { return height - yTrendScale(d[3]); })
-                // .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length })
-                // .attr("height", function(d) { return yTrendScale(d[3]); })
-                // .attr("transform", "translate("+(5*margin)+","+margin+")")
-                // .attr('opacity', ".35");
 
       newBars.transition()
              .duration(2000)
              .delay(function(d,i){ return i*10 })
              .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
              .attr("y", function(d) { return height - yTrendScale(d[3]); })
-             .attr("transform", "translate("+(2*margin)+","+(2*margin)+")")
-             .attr("height", function(d) { return yTrendScale(d[3]); });
-             
+             .attr("transform", "translate("+(2.5*margin)+","+(2*margin)+")")
+             .attr("height", function(d) { return yTrendScale(d[3]); });    
 // new Y axis
       var newYTrend = svg.selectAll(".y.axis.trend")
               .data(scope.trenddata);
@@ -182,9 +174,6 @@ var resize = function(){
 
   var width = parseInt(d3.select("#graph").style("width")) - margin*2;
   var height = parseInt(d3.select("#graph").style("height")) - margin*2;
-
-
-
 
 }
 

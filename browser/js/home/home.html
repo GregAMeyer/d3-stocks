@@ -1,24 +1,44 @@
 
 <section id='home'>
-
-	
-	<div>
-		Stock Symbol:<input type='text' ng-model='stockSymbol'>
-		State Date:<input type='date' ng-model='startDate'>
-		End Date:<input type='date' ng-model='endDate'>
-		<div class='dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET NEW DATA</div>
-	</div>
-	<div>
-		Trend Term:<input type='text' ng-model='trendTerm'>
-		<div 	class='dataButton' 
-				ng-click='getNewTrendData(trendTerm, startDate, endDate)'>
-				GET NEW TREND DATA
-		</div>
-	</div>
-	<main-graph stockdata="stockClose" trenddata='trendData'></main-graph>
+	<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Stock/Search
+                    </a>
+                </li>
+                <li class='row'>
+                	<a>Stock Symbol: [White Line]
+                		<input type='text' 
+							ng-model='stockSymbol' 
+							placeholder="i.e. 'AAPL'"></a>
+                </li>
+                <li class='row'>
+                	<a>Start Date:<input type='date' ng-model='startDate'></a>
+                </li>
+                <li class='row'>
+                	<p><a>End Date:<input type='date' ng-model='endDate'></p></a>
+                </li>
+                <li class='row'>
+                	<p><a>Google Keyword: [Green Bars]<input type='text' ng-model='trendTerm' placeholder="i.e. 'iPhone'"></p></a>
+                </li>
+                <!--  <li class='row'>
+                	<p><a>Google Keyword:<input type='text' ng-model='trendTerm2' placeholder="i.e. 'Apple Watch'"></p></a>
+                </li> -->
+                <li class='row'>
+                	<button class='btn dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET STOCK</button>
+                </li>
+                <li class='row'>
+                	<button class='btn dataButton' ng-click='getNewTrendData(trendTerm, startDate, endDate)'>GET KEYWORD</button>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+	<main-graph class='col-lg-12' stockdata="stockClose" trenddata='trendData'></main-graph>
 <br>
 <br>
-<div>{{trendData}}</div>
+<!-- <div>{{trendData}}</div> -->
 
 </section>
 
