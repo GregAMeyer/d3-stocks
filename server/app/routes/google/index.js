@@ -1,15 +1,11 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-var Promise = require('bluebird');
-
+//var Promise = require('bluebird');
 // var http = require('http');
 // Promise.promisifyAll(http)
 
 var request = require('request');
-
-
-
 
 router.post('/:term/:start/:end', function (req, res) {
 //2015-06-01
@@ -26,16 +22,18 @@ router.post('/:term/:start/:end', function (req, res) {
 	var idx2;
 
     request.get("http://www.google.com/trends/fetchComponent?hl=en-US&q="+term+dateQuery, function(err, response, body){
+            if(err) console.log('error:', err)
+            else {
+        		var string = "'"+body.toString().replace(/\n/g, "")+"'"
 
-    		var string = "'"+body.toString().replace(/\n/g, "")+"'"
-
-    		idx1 = string.indexOf('var chartData =');
-    		idx2 = string.indexOf('"height":230}');
-    		var newStr = string.slice(idx1+16, idx2+14)
-            var getObj = new Function('return ' + newStr);
-            var obj = getObj();
-    		//console.log(obj.rows)
-    		res.send(obj.rows) 
+        		idx1 = string.indexOf('var chartData =');
+        		idx2 = string.indexOf('"height":230}');
+        		var newStr = string.slice(idx1+16, idx2+14)
+                var getObj = new Function('return ' + newStr);
+                var obj = getObj();
+        		//console.log(obj.rows)
+        		res.send(obj.rows) 
+            }
     })
 
 });
