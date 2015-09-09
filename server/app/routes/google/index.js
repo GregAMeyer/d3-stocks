@@ -31,14 +31,14 @@ router.post('/:term/:start/:end', function (req, res) {
         		var newStr = string.slice(idx1+16, idx2+14)
                 var getObj = new Function('return ' + newStr);
                 var obj = getObj();
-        		//console.log(obj.rows)
+        		console.log('returned from google:',obj.rows)
         		res.send(obj.rows) 
             }
     })
 
 });
 
-
+//http:www.google.com/trends/fetchComponent?hl=en-US&q=iphone&date=03%2F2015%206m&cmpt=q&tz=Etc%2FGMT%2B4&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=300
 
 
 

@@ -67,12 +67,11 @@ app.directive('mainGraph', function () {
                           .scale(yTrendScale)
                           .ticks(5)
                           .orient("right");
-      var yAxisTrans = width+(2*margin);
 
       svg.append('g')
         .attr('class', "y axis trend")
         .attr('stroke', 'black')
-        .attr("transform", "translate("+yAxisTrans+","+(2*margin)+")")
+        .attr("transform", "translate("+width+(2*margin)+","+(2*margin)+")")
         .call(yAxisTrend) 
 
       svg.selectAll("rect")
