@@ -73,20 +73,11 @@ app.directive('mainGraph', function () {
         d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
         // ^^^ make this flexible later but this should work for now
       });
-     // console.log(scope.trenddata)
 
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(scope.trenddata[0][0].v), 
                      new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-          .range([0, width-margin]);
-      // var yTrendScale = d3.scale.linear()
-      //     .domain( [ d3.min(scope.trenddata, function(d) { return Math.min(d[1], d[2]); }), 
-      //                d3.max(scope.trenddata, function(d) { return Math.max(d[1], d[2]); })] ) // also extend these once it works with two
-      //     .range([height, 0])
-      //     .nice();
-
-          //.domain( [ d3.min(scope.trenddata, function(d){ return d.y0s }), 
-            //        d3.max(scope.trenddata, function(d){ return d.y1s }) ])// also extend these once it works with two
+          .range([0, width-(1.5*margin)]);
       var yTrendScale = d3.scale.linear() //domain is (min of all y0s, max of all y1s)
           .domain([0, 300]) //figure out why the d3 min/max doesnt work because at least this makes everything else work
           .range([height, 0])
@@ -100,18 +91,9 @@ app.directive('mainGraph', function () {
           .attr('stroke', 'black')
           .attr("transform", "translate("+width+(2*margin)+","+(2*margin)+")")
           .call(yAxisTrend) 
-      // svg.selectAll("rect")
-      //     .data(scope.trenddata)
-      //     .enter()
-      //     .append("rect")
-      //     .attr('class','bar')
-      //     .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
-      //     .attr("y", function(d) { return height - yTrendScale(d[3]); })
-      //     .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length })
-      //     .attr("height", function(d) { return yTrendScale(d[3]); })
-      //     .attr("transform", "translate("+(margin)+","+(2*margin)+")")
-      //     .attr('opacity', ".65"); 
 
+          //.domain( [ d3.min(scope.trenddata, function(d){ return d.y0s }), 
+            //        d3.max(scope.trenddata, function(d){ return d.y1s }) ])// also extend these once it works with two
 /* new scope.trenddata format
 [
     y0s = [0, 89]
@@ -121,28 +103,6 @@ app.directive('mainGraph', function () {
     [ {v: "2015-03-04T13:00:00.000Z", f: "Mar 1 – 7, 2015"}, 
       null, null, 89, null, null, true, 80]
 ]
-var y = d3.scale.linear()
-    .rangeRound([height, 0]);
-y.domain([0, d3.max(data, function(d) { return d.total; })]);
-data.forEach(function(d) {
-    var y0 = 0;
-    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
-    d.total = d.ages[d.ages.length - 1].y1;
-  });
-var state = svg.selectAll(".state")
-      .data(data)
-    .enter().append("g")
-      .attr("class", "g")
-      .attr("transform", function(d) { return "translate(" + x(d.State) + ",0)"; });
-
-state.selectAll("rect")
-      .data(function(d) { return d.ages; })
-    .enter().append("rect")
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.y1); })
-      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-      .style("fill", function(d) { return color(d.name); });
-
 */
       var Week = svg.selectAll(".Week")
           .data(scope.trenddata)
@@ -154,11 +114,11 @@ state.selectAll("rect")
           .enter()
           .append("rect")
           .attr('class', 'bar')
-          .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length} )//
+          .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)} )//
           .attr("y", function(d) { console.log('d: ', d, 'yTSd.y1: ', yTrendScale(d.y1)); return yTrendScale(d.y1) })
           .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
           .style("fill", function(d) { return colorScale(d.index); })
-          .attr("transform", "translate("+(margin)+","+(2*margin)+")")
+          .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
           .attr('opacity', ".75"); 
       // 4 => 1/4 = .25 ,  1-.25 = .75 , 1.3333 =>  1/1.333 = .75
 
