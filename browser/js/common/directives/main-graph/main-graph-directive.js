@@ -60,13 +60,35 @@ app.directive('mainGraph', function () {
         .call(yAxis)
                        	
 //------- GOOGLE TREND BARS ON GRAPH (INITIALLY) -----------
+      scope.trenddata.forEach(function(d) {
+        var y0 = 0;
+        //colorScale.domain() = [1,2] -> the indexes that hold the search frequency values
+        //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
+        d.searches = colorScale.domain().map(function(index) { 
+          return {index: index, y0: y0, y1: y0 += +d[index]}; 
+        });
+        d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
+        d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
+        //d.total = new property on each element that should represent sum of each search value
+        d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
+        // ^^^ make this flexible later but this should work for now
+      });
+     // console.log(scope.trenddata)
+
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(scope.trenddata[0][0].v), 
                      new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
           .range([0, width-margin]);
-      var yTrendScale = d3.scale.linear()
-          .domain( [ d3.min(scope.trenddata, function(d) { return Math.min(d[1], d[2]); }), 
-                     d3.max(scope.trenddata, function(d) { return Math.max(d[1], d[2]); })] ) // also extend these once it works with two
+      // var yTrendScale = d3.scale.linear()
+      //     .domain( [ d3.min(scope.trenddata, function(d) { return Math.min(d[1], d[2]); }), 
+      //                d3.max(scope.trenddata, function(d) { return Math.max(d[1], d[2]); })] ) // also extend these once it works with two
+      //     .range([height, 0])
+      //     .nice();
+
+          //.domain( [ d3.min(scope.trenddata, function(d){ return d.y0s }), 
+            //        d3.max(scope.trenddata, function(d){ return d.y1s }) ])// also extend these once it works with two
+      var yTrendScale = d3.scale.linear() //domain is (min of all y0s, max of all y1s)
+          .domain([0, 300]) //figure out why the d3 min/max doesnt work because at least this makes everything else work
           .range([height, 0])
           .nice();
       var yAxisTrend = d3.svg.axis()
@@ -89,26 +111,38 @@ app.directive('mainGraph', function () {
       //     .attr("height", function(d) { return yTrendScale(d[3]); })
       //     .attr("transform", "translate("+(margin)+","+(2*margin)+")")
       //     .attr('opacity', ".65"); 
-      scope.trenddata.forEach(function(d) {
-        var y0 = 0;
-        //colorScale.domain() = [3,7,11] -> the indexes that hold the search value
-        //d.searches = new array on each element in data (eventually to have the name in there)
-        d.searches = colorScale.domain().map(function(index) { 
-          return {index: index, y0: y0, y1: y0 += +d[index]}; 
-        });
-        //d.total = new property on each element that should represent sum of each search value
-        d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
-        // ^^^ make this flexible later but this should work for now
-      });
-     // console.log(scope.trenddata)
 
 /* new scope.trenddata format
 [
-    searches: [ {index: 3, y0: 0, y1: 89},{index: 7, y0: 89, y1: 169} ],
+    y0s = [0, 89]
+    y1s = [89, 169]
+    searches: [ {index: 1, y0: 0, y1: 89},{index: 2, y0: 89, y1: 169} ],
     total: 169,
     [ {v: "2015-03-04T13:00:00.000Z", f: "Mar 1 – 7, 2015"}, 
       null, null, 89, null, null, true, 80]
 ]
+var y = d3.scale.linear()
+    .rangeRound([height, 0]);
+y.domain([0, d3.max(data, function(d) { return d.total; })]);
+data.forEach(function(d) {
+    var y0 = 0;
+    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+    d.total = d.ages[d.ages.length - 1].y1;
+  });
+var state = svg.selectAll(".state")
+      .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x(d.State) + ",0)"; });
+
+state.selectAll("rect")
+      .data(function(d) { return d.ages; })
+    .enter().append("rect")
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.y1); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .style("fill", function(d) { return color(d.name); });
+
 */
       var Week = svg.selectAll(".Week")
           .data(scope.trenddata)
@@ -121,9 +155,11 @@ app.directive('mainGraph', function () {
           .append("rect")
           .attr('class', 'bar')
           .attr("width", function(d){ return (-20+width-2*margin)/scope.trenddata.length} )//
-          .attr("y", function(d) { return yTrendScale(d.y1)/4 + (margin)/1.3333; })
-          .attr("height", function(d) { return yTrendScale(d.y0)/4 - yTrendScale(d.y1)/4; })
-          .style("fill", function(d) { return colorScale(d.index); });
+          .attr("y", function(d) { console.log('d: ', d, 'yTSd.y1: ', yTrendScale(d.y1)); return yTrendScale(d.y1) })
+          .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
+          .style("fill", function(d) { return colorScale(d.index); })
+          .attr("transform", "translate("+(margin)+","+(2*margin)+")")
+          .attr('opacity', ".75"); 
       // 4 => 1/4 = .25 ,  1-.25 = .75 , 1.3333 =>  1/1.333 = .75
 
 //------- LINE ON GRAPH (INITIALLY) ----------------------
