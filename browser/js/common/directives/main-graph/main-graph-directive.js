@@ -64,7 +64,7 @@ console.log('scope.trenddata: ', scope.trenddata)
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(scope.trenddata[0][0].v), 
                      new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-          .range([0, width-(1.5*margin)]);
+          .range([0, width-(2*margin)-3]);
       var yTrendScale = d3.scale.linear() //domain is (min of all y0s, max of all y1s)
           .domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/20 }), 
                    d3.max(scope.trenddata, function(d){ return d[0].total }) ])// also extend these once it works with two
