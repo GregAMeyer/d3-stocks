@@ -40,7 +40,351 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
      {"Close": "41","Date": "2015-02-24"},{"Close": "35","Date": "2015-02-22"},{"Close": "33","Date": "2015-02-20"},
      {"Close": "39","Date": "2015-02-18"},{"Close": "33","Date": "2015-02-16"},{"Close": "32","Date": "2015-02-15"},
      {"Close": "35","Date": "2015-02-14"},{"Close": "32","Date": "2015-02-13"},{"Close": "30","Date": "2015-02-12"}		]; 
-    $scope.trenddata = [[{
+    
+    $scope.trenddata = [
+    [{
+            "v": "Wed Apr 08 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 110
+            }],
+            "total": 110
+        },
+        92,
+        23
+    ],
+    [{
+            "v": "Wed Apr 15 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 70
+            }, {
+                "index": 2,
+                "y0": 70,
+                "y1": 140
+            }],
+            "total": 140
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Apr 22 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 19 – 25, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 90
+            }, {
+                "index": 2,
+                "y0": 90,
+                "y1": 120
+            }],
+            "total": 120
+        },
+        90,
+        21
+    ],
+    [{
+            "v": "Wed Apr 29 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 26 – May 2, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 150
+            }],
+            "total": 150
+        },
+        92,
+        23
+    ],
+    [{
+            "v": "Wed May 6 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'May 3 – 9, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 50
+            }, {
+                "index": 2,
+                "y0": 50,
+                "y1": 100
+            }],
+            "total": 100
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed May 13 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 19 – 25, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 95
+            }, {
+                "index": 2,
+                "y0": 95,
+                "y1": 150
+            }],
+            "total": 150
+        },
+        90,
+        21
+    ],
+    [{
+            "v": "Wed May 20 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 85
+            }, {
+                "index": 2,
+                "y0": 85,
+                "y1": 110
+            }],
+            "total": 110
+        },
+        92,
+        23
+    ],
+    [{
+            "v": "Wed May 27 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 75
+            }, {
+                "index": 2,
+                "y0": 75,
+                "y1": 145
+            }],
+            "total": 145
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed June 03 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 19 – 25, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 95
+            }, {
+                "index": 2,
+                "y0": 95,
+                "y1": 125
+            }],
+            "total": 125
+        },
+        90,
+        21
+    ],
+    [{
+            "v": "Wed June 10 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 75
+            }, {
+                "index": 2,
+                "y0": 75,
+                "y1": 145
+            }],
+            "total": 145
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed June 17 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 55
+            }, {
+                "index": 2,
+                "y0": 55,
+                "y1": 135
+            }],
+            "total": 135
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed June 24 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 70
+            }, {
+                "index": 2,
+                "y0": 70,
+                "y1": 125
+            }],
+            "total": 125
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed July 01 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 100
+            }, {
+                "index": 2,
+                "y0": 100,
+                "y1": 155
+            }],
+            "total": 165
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed July 08 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 75
+            }, {
+                "index": 2,
+                "y0": 75,
+                "y1": 105
+            }],
+            "total": 105
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed July 15 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 85
+            }, {
+                "index": 2,
+                "y0": 85,
+                "y1": 105
+            }],
+            "total": 105
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed July 22 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 70
+            }, {
+                "index": 2,
+                "y0": 70,
+                "y1": 135
+            }],
+            "total": 135
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed July 29 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 120
+            }],
+            "total": 120
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Aug 05 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 60
+            }, {
+                "index": 2,
+                "y0": 60,
+                "y1": 120
+            }],
+            "total": 120
+        },
+        90,
+        22
+    ],
+]
+
+
+
+  $scope.getNewData = function(stockSymbol, startDate, endDate){
+		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
+		.then(function(newStockData){
+            $scope.stockClose = newStockData
+			return $scope.stockClose;
+		})
+	}
+	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
+		return apiFactory.getTrendData(trendTerm, startDate, endDate)
+		.then(function(newTrendData){
+            $scope.trendData = newTrendData;
+			return $scope.trendData; 
+		})
+	}
+})
+
+/*
+
+ // newTrendData.forEach(function(d) {
+            //     var y0 = 0;
+            //     var colorScaleDomain = [1,2] //-> the indexes that hold the search frequency values
+            //     //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
+            //     d.searches = colorScaleDomain.map(function(index) { 
+            //       return {index: index, y0: y0, y1: y0 += +d[index]}; 
+            //     });
+            //     d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
+            //     d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
+            //     //d.total = new property on each element that should represent sum of each search value
+            //     d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
+            //     // ^^^ make this flexible later but this should work for now
+            // });
+
+$scope.trenddata = [[{
         "v": "2015-03-04T13:00:00.000Z",
         "f": "Mar 1 – 7, 2015"}, 89, 80],[{
         "v": "2015-03-11T12:00:00.000Z",
@@ -93,19 +437,4 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
         "f": "Aug 17 – 24, 2015"}, 94, 80],[{
         "v": "2015-08-27T12:00:00.000Z",
         "f": "Aug 25 – 30, 2015"}, 94, 80]];
-
-  $scope.getNewData = function(stockSymbol, startDate, endDate){
-		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
-		.then(function(newStockData){
-            $scope.stockClose = newStockData
-			return $scope.stockClose;
-		})
-	}
-	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
-		return apiFactory.getTrendData(trendTerm, startDate, endDate)
-		.then(function(newTrendData){
-            $scope.trendData = newTrendData;
-			return $scope.trendData; 
-		})
-	}
-})
+        */

@@ -28,11 +28,7 @@ app.factory('apiFactory', function($http){
 
 			return $http.post('/api/google/'+trendTerm+'/'+startDate+'/'+endDate)
 			.then(function(trendTermData){
-				trendTermData.data.forEach(function(arr){
-					arr.splice(1,2)
-					arr.splice(2,3)
-					arr.splice(3,3)
-				})
+				console.log('api factory trendTermData', trendTermData.data)
 				return trendTermData.data
 			})
 		}

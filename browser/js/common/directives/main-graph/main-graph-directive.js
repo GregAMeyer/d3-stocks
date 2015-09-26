@@ -47,7 +47,7 @@ app.directive('mainGraph', function () {
         .attr("y",  (margin))
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
-        .text("Stock Price vs Google Searches");
+        .text("Stock Price vs Google Searches !! UNDER CONSTRUCTION !!");
       svg.append('g')
       	.attr('class', "x axis")
       	.attr('stroke', 'black')
@@ -60,26 +60,14 @@ app.directive('mainGraph', function () {
         .call(yAxis)
                        	
 //------- GOOGLE TREND BARS ON GRAPH (INITIALLY) -----------
-      scope.trenddata.forEach(function(d) {
-        var y0 = 0;
-        //colorScale.domain() = [1,2] -> the indexes that hold the search frequency values
-        //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
-        d.searches = colorScale.domain().map(function(index) { 
-          return {index: index, y0: y0, y1: y0 += +d[index]}; 
-        });
-        d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
-        d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
-        //d.total = new property on each element that should represent sum of each search value
-        d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
-        // ^^^ make this flexible later but this should work for now
-      });
-
+console.log('scope.trenddata: ', scope.trenddata)
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(scope.trenddata[0][0].v), 
                      new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-          .range([0, width-(1.5*margin)]);
+          .range([0, width-(2*margin)-3]);
       var yTrendScale = d3.scale.linear() //domain is (min of all y0s, max of all y1s)
-          .domain([0, 300]) //figure out why the d3 min/max doesnt work because at least this makes everything else work
+          .domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/20 }), 
+                   d3.max(scope.trenddata, function(d){ return d[0].total }) ])// also extend these once it works with two
           .range([height, 0])
           .nice();
       var yAxisTrend = d3.svg.axis()
@@ -92,8 +80,6 @@ app.directive('mainGraph', function () {
           .attr("transform", "translate("+width+(2*margin)+","+(2*margin)+")")
           .call(yAxisTrend) 
 
-          //.domain( [ d3.min(scope.trenddata, function(d){ return d.y0s }), 
-            //        d3.max(scope.trenddata, function(d){ return d.y1s }) ])// also extend these once it works with two
 /* new scope.trenddata format
 [
     y0s = [0, 89]
@@ -108,14 +94,14 @@ app.directive('mainGraph', function () {
           .data(scope.trenddata)
           .enter().append("g")
           .attr("class", "g")
-          .attr( "transform", function(d) { return "translate("+ xTrendScale(new Date(d[0].v))+")"} );
+          .attr( "transform", function(d) { console.log('d0.v: ', new Date(d[0].v)); return "translate("+ xTrendScale(new Date(d[0].v))+")"} );      
       Week.selectAll("rect")
-          .data(function(d) { return d.searches; })
+          .data(function(d) { console.log('data d0searches: ', d[0].searches); return d[0].searches })
           .enter()
           .append("rect")
           .attr('class', 'bar')
-          .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)} )//
-          .attr("y", function(d) { console.log('d: ', d, 'yTSd.y1: ', yTrendScale(d.y1)); return yTrendScale(d.y1) })
+          .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)})
+          .attr("y", function(d) { return yTrendScale(d.y1) })
           .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
           .style("fill", function(d) { return colorScale(d.index); })
           .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
