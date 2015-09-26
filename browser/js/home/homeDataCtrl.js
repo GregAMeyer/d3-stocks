@@ -40,7 +40,96 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
      {"Close": "41","Date": "2015-02-24"},{"Close": "35","Date": "2015-02-22"},{"Close": "33","Date": "2015-02-20"},
      {"Close": "39","Date": "2015-02-18"},{"Close": "33","Date": "2015-02-16"},{"Close": "32","Date": "2015-02-15"},
      {"Close": "35","Date": "2015-02-14"},{"Close": "32","Date": "2015-02-13"},{"Close": "30","Date": "2015-02-12"}		]; 
-    $scope.trenddata = [[{
+    
+    $scope.trenddata = [
+    [{
+            "v": "Wed Apr 08 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 100
+            }],
+            "total": 207
+        },
+        92,
+        23
+    ],
+    [{
+            "v": "Wed Apr 15 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 12 – 18, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 100
+            }],
+            "total": 202
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Apr 22 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'Apr 19 – 25, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 100
+            }],
+            "total": 201
+        },
+        90,
+        21
+    ]
+]
+
+
+
+  $scope.getNewData = function(stockSymbol, startDate, endDate){
+		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
+		.then(function(newStockData){
+            $scope.stockClose = newStockData
+			return $scope.stockClose;
+		})
+	}
+	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
+		return apiFactory.getTrendData(trendTerm, startDate, endDate)
+		.then(function(newTrendData){
+            $scope.trendData = newTrendData;
+			return $scope.trendData; 
+		})
+	}
+})
+
+/*
+
+ // newTrendData.forEach(function(d) {
+            //     var y0 = 0;
+            //     var colorScaleDomain = [1,2] //-> the indexes that hold the search frequency values
+            //     //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
+            //     d.searches = colorScaleDomain.map(function(index) { 
+            //       return {index: index, y0: y0, y1: y0 += +d[index]}; 
+            //     });
+            //     d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
+            //     d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
+            //     //d.total = new property on each element that should represent sum of each search value
+            //     d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
+            //     // ^^^ make this flexible later but this should work for now
+            // });
+
+$scope.trenddata = [[{
         "v": "2015-03-04T13:00:00.000Z",
         "f": "Mar 1 – 7, 2015"}, 89, 80],[{
         "v": "2015-03-11T12:00:00.000Z",
@@ -93,19 +182,4 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
         "f": "Aug 17 – 24, 2015"}, 94, 80],[{
         "v": "2015-08-27T12:00:00.000Z",
         "f": "Aug 25 – 30, 2015"}, 94, 80]];
-
-  $scope.getNewData = function(stockSymbol, startDate, endDate){
-		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
-		.then(function(newStockData){
-            $scope.stockClose = newStockData
-			return $scope.stockClose;
-		})
-	}
-	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
-		return apiFactory.getTrendData(trendTerm, startDate, endDate)
-		.then(function(newTrendData){
-            $scope.trendData = newTrendData;
-			return $scope.trendData; 
-		})
-	}
-})
+        */
