@@ -46,7 +46,7 @@ router.post('/:term/:start/:end', function (req, res) {
                     arr[0].total = arr[0].searches[0].y1+arr[0].searches[1].y1//+d.searches[2].y1+d.searches[3].y1
                     // ^^^ make this flexible later but this should work for now
                 });
-                console.log('google trend after manipulation: ', googleTrendData)
+                // console.log('google trend after manipulation: ', googleTrendData)
         		res.send(googleTrendData) 
             }
     })

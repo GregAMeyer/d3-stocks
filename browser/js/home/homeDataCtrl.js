@@ -43,6 +43,87 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     
     $scope.trenddata = [
     [{
+            "v": "Wed March 04 2015 08: 00: 00 GMT - 0400(EDT)",
+            // "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 100
+            }],
+            "total": 100
+        },
+        92,
+        23
+    ],[{
+            "v": "Wed March 11 2015 08: 00: 00 GMT - 0400(EDT)",
+            // "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 120
+            }],
+            "total": 120
+        },
+        92,
+        23
+    ],[{
+            "v": "Wed March 18 2015 08: 00: 00 GMT - 0400(EDT)",
+            // "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 70
+            }, {
+                "index": 2,
+                "y0": 70,
+                "y1": 105
+            }],
+            "total": 105
+        },
+        92,
+        23
+    ],[{
+            "v": "Wed March 25 2015 08: 00: 00 GMT - 0400(EDT)",
+            // "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 80
+            }, {
+                "index": 2,
+                "y0": 80,
+                "y1": 110
+            }],
+            "total": 110
+        },
+        92,
+        23
+    ],[{
+            "v": "Wed Apr 01 2015 08: 00: 00 GMT - 0400(EDT)",
+            // "f": 'Apr 5 – 11, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 95
+            }, {
+                "index": 2,
+                "y0": 95,
+                "y1": 115
+            }],
+            "total": 115
+        },
+        92,
+        23
+    ],
+    [{
             "v": "Wed Apr 08 2015 08: 00: 00 GMT - 0400(EDT)",
             "f": 'Apr 5 – 11, 2015',
             "searches": [{
@@ -129,7 +210,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed May 13 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 19 – 25, 2015',
+            "f": 'May 10 – 16, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -146,7 +227,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed May 20 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 5 – 11, 2015',
+            "f": 'May 17 – 23, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -163,7 +244,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed May 27 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'May 24 – 30, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -180,7 +261,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed June 03 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 19 – 25, 2015',
+            "f": 'May 31 – June 5, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -197,7 +278,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed June 10 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'June 6 – 12, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -214,7 +295,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed June 17 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'June 13 – 19, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -231,7 +312,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed June 24 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'June 20 – 26, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -248,7 +329,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed July 01 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'June 27 – July 3, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -265,7 +346,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed July 08 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'July 4 – 10, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -282,7 +363,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed July 15 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'July 11 – 17, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -299,7 +380,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed July 22 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'July 18 – 24, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -316,7 +397,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed July 29 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'July 25 – 31, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -333,7 +414,7 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
     [{
             "v": "Wed Aug 05 2015 08: 00: 00 GMT - 0400(EDT)",
-            "f": 'Apr 12 – 18, 2015',
+            "f": 'August 1 – 7, 2015',
             "searches": [{
                 "index": 1,
                 "y0": 0,
@@ -344,6 +425,57 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
                 "y1": 120
             }],
             "total": 120
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Aug 12 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'August 8 – 14, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 60
+            }, {
+                "index": 2,
+                "y0": 60,
+                "y1": 120
+            }],
+            "total": 120
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Aug 19 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'August 15 – 21, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 65
+            }, {
+                "index": 2,
+                "y0": 65,
+                "y1": 110
+            }],
+            "total": 110
+        },
+        90,
+        22
+    ],
+    [{
+            "v": "Wed Aug 26 2015 08: 00: 00 GMT - 0400(EDT)",
+            "f": 'August 22 – 28, 2015',
+            "searches": [{
+                "index": 1,
+                "y0": 0,
+                "y1": 70
+            }, {
+                "index": 2,
+                "y0": 70,
+                "y1": 130
+            }],
+            "total": 130
         },
         90,
         22
