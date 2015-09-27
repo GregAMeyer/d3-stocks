@@ -1,0 +1,52 @@
+var dataset = [
+        { apples: 5, oranges: 10, grapes: 22 },
+        { apples: 4, oranges: 12, grapes: 28 },
+        { apples: 2, oranges: 19, grapes: 32 },
+];
+
+need 
+
+var dataset = [
+        [
+                { x: 0, y: 5 },
+                { x: 1, y: 4 },
+                { x: 2, y: 2 }
+        ],
+        [
+                { x: 0, y: 10 },
+                { x: 1, y: 12 },
+                { x: 2, y: 19 }
+        ],
+        [
+                { x: 0, y: 22 },
+                { x: 1, y: 28 },
+                { x: 2, y: 32 }
+        ]
+];
+
+have:
+google data:
+[ 
+  [ { date: Wed Apr 08 2015 08:00:00 GMT-0400 (EDT),
+      term1: 'just',
+      term2: 'work',
+      term1Val: 55,
+      term2Val: 97 } ],
+  [ { date: Wed Apr 15 2015 08:00:00 GMT-0400 (EDT),
+      term1: 'just',
+      term2: 'work',
+      term1Val: 54,
+      term2Val: 100 } ],
+]
+
+need for stack: 
+[
+	[
+		{date: , x: 0, y: 90, term: iphone},
+		{date: , x: 1, y: 95, term: iphone},
+	],
+	[
+		{date: , x: 0, y: 40, term: ipad},
+		{date: , x: 1, y: 45, term: ipad}
+	]
+]
