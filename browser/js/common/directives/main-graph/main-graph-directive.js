@@ -60,14 +60,13 @@ app.directive('mainGraph', function () {
         .call(yAxis)
                        	
 //------- GOOGLE TREND BARS ON GRAPH (INITIALLY) -----------
-console.log('scope.trenddata: ', scope.trenddata)
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(scope.trenddata[0][0].v), 
                      new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-          .range([0, width-(2*margin)-3]);
-      var yTrendScale = d3.scale.linear() //domain is (min of all y0s, max of all y1s)
-          .domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/20 }), 
-                   d3.max(scope.trenddata, function(d){ return d[0].total }) ])// also extend these once it works with two
+          .range([0, width-(2*margin)+1]);
+      var yTrendScale = d3.scale.linear()
+          .domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/(scope.trenddata.length) }),
+                   d3.max(scope.trenddata, function(d){ return d[0].total }) ])
           .range([height, 0])
           .nice();
       var yAxisTrend = d3.svg.axis()
@@ -77,36 +76,27 @@ console.log('scope.trenddata: ', scope.trenddata)
       svg.append('g')
           .attr('class', "y axis trend")
           .attr('stroke', 'black')
-          .attr("transform", "translate("+width+(2*margin)+","+(2*margin)+")")
+          .attr("transform", "translate("+(width+2*margin)+","+(2*margin)+")")
           .call(yAxisTrend) 
 
-/* new scope.trenddata format
-[
-    y0s = [0, 89]
-    y1s = [89, 169]
-    searches: [ {index: 1, y0: 0, y1: 89},{index: 2, y0: 89, y1: 169} ],
-    total: 169,
-    [ {v: "2015-03-04T13:00:00.000Z", f: "Mar 1 – 7, 2015"}, 
-      null, null, 89, null, null, true, 80]
-]
-*/
-      var Week = svg.selectAll(".Week")
+      var Bars = svg.selectAll("rect.bar")
           .data(scope.trenddata)
           .enter().append("g")
           .attr("class", "g")
-          .attr( "transform", function(d) { console.log('d0.v: ', new Date(d[0].v)); return "translate("+ xTrendScale(new Date(d[0].v))+")"} );      
-      Week.selectAll("rect")
-          .data(function(d) { console.log('data d0searches: ', d[0].searches); return d[0].searches })
+          .attr("class", "googleBars")
+          .attr( "transform", function(d) { return "translate("+ xTrendScale(new Date(d[0].v))+")"} );      
+      Bars.selectAll("rect")
+          .data(function(d) { return d[0].searches })
           .enter()
           .append("rect")
           .attr('class', 'bar')
+          .attr("class", "googleBars")
           .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)})
           .attr("y", function(d) { return yTrendScale(d.y1) })
           .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
           .style("fill", function(d) { return colorScale(d.index); })
           .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
           .attr('opacity', ".75"); 
-      // 4 => 1/4 = .25 ,  1-.25 = .75 , 1.3333 =>  1/1.333 = .75
 
 //------- LINE ON GRAPH (INITIALLY) ----------------------
       var makeLine = d3.svg.line()
@@ -155,37 +145,35 @@ console.log('scope.trenddata: ', scope.trenddata)
 var changeBars = function(){
       xTrendScale.domain( [ new Date(scope.trenddata[0][0].v), 
                             new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-      // yTrendScale.domain( [ d3.min(scope.trenddata, function(d) { return d[3]; }), 
-      //                       d3.max(scope.trenddata, function(d) { return d[3]; })] )
-//to support multiple keywords
-      yTrendScale.domain( [ 
-        d3.min(scope.trenddata, function(d) { 
-          var sumMin = 0;
-          d.forEach(function(el){
-                      if(typeof(el)=='number'){ sumMin+=el }
-                    });
-          return sumMin 
-        }), 
-        d3.max(scope.trenddata, function(d) { 
-          var sumMax = 0;
-          d.forEach(function(el){
-                      if(typeof(el)=='number'){ sumMax+=el }
-                    }); 
-          return sumMax
-        })
-      ])
-// new bars
-      var newBars = svg.selectAll('rect.bar')
-                      .data(scope.trenddata);
-      newBars.exit().remove()
-      newBars.enter().append('rect.bar')
+      yTrendScale.domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/20 }), 
+                            d3.max(scope.trenddata, function(d){ return d[0].total }) ])
+      // var newBars = svg.selectAll('rect.bar')
+      //        .data(scope.trenddata);
+      // newBars.exit().remove()
+      // newBars.enter().append('rect.bar')
+      // newBars.transition()
+      //        .duration(2000)
+      //        .delay(function(d,i){ return i*10 })
+      //        .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
+      //        .attr("y", function(d) { return yTrendScale(d.y1) })
+      //        .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
+      //        .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)}); 
+
+      var newBars = svg.selectAll('.googleBars').data([])
+      newBars.exit().remove();
+      newBars.data(scope.trenddata, function(d) { return d[0].searches })
+          .enter()
+          .append('rect.bar.googleBars')
+          .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)})
+          .attr("y", function(d) { return yTrendScale(d.y1) })
+          .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
+          .style("fill", function(d) { return colorScale(d.index); })
+          .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
+          .attr('opacity', ".75");
       newBars.transition()
-             .duration(2000)
-             .delay(function(d,i){ return i*10 })
-             .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
-             .attr("y", function(d) { return height - yTrendScale(d[3]); })
-             .attr("transform", "translate("+(2.5*margin)+","+(2*margin)+")")
-             .attr("height", function(d) { return yTrendScale(d[3]); });    
+              .duration(2000)
+              .delay(function(d,i){ return i*10 });
+
 // new Y axis
       var newYTrend = svg.selectAll(".y.axis.trend")
               .data(scope.trenddata);
@@ -193,7 +181,7 @@ var changeBars = function(){
                   .call(yAxisTrend);
         newYTrend.transition()
           .duration(2000);
-        }
+}
 // ------- Make graph size responsive -------------
 var resize = function(){
   console.log('resizing')
@@ -209,7 +197,7 @@ var resize = function(){
             	return;
         	}
         	if(newValues) {
-            	console.log('watching new values come in: ', newValues)
+            	// console.log('watching new values come in: ', newValues)
             	scope.stockdata = newValues
             	changeStockLine()
         	}
@@ -220,8 +208,9 @@ var resize = function(){
               return;
           }
           if(newValues) {
-              console.log('watching new values come in: ', newValues)
+              // console.log('watching new values come in: ', newValues)
               scope.trenddata = newValues
+              console.log('scope.trenddata before changebars() ', scope.trenddata)
               changeBars()
           }
           return
