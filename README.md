@@ -3,6 +3,8 @@
 
 This is the second project of the senior phase at Fullstack Academy of Code. It is a stock-analysis tool for visualizing data not traditionally associated with stocks. Utilizes D3 to show the relationship between a stock price and a Google keyword search volume over time.
 
+[![under construction screen shot with stacked bars](https://github.com/GregAMeyer/d3-stocks/blob/dataStructure/Screen%20Shot%202015-09-28%20at%206.29.01%20PM.png)]
+
 ## Motivation
 
 The purpose of this project is to allow each student to develop their own idea for an application. I learned and utilized D3 for this project, which was not part of the curriculum at Fullstack Academy.
