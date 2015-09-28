@@ -22,7 +22,7 @@ app.directive('mainGraph', function () {
 			    .range([height, 0])
 			    .nice();
       var colorScale = d3.scale.ordinal()
-          .range(["#98abc5", "#8a89a6", "#6b486b", "#a05d56", "#d0743c"])
+          .range(["#004C2E", "#64AD4C", "#6b486b", "#a05d56", "#d0743c"])
           .domain([1,2]); ///////////////extend this when its working with two
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
@@ -47,6 +47,7 @@ app.directive('mainGraph', function () {
         .attr("y",  (margin))
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
+        .attr('class', 'title')
         .text("Stock Price vs Google Searches !! UNDER CONSTRUCTION !!");
       svg.append('g')
       	.attr('class', "x axis")
