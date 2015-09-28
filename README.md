@@ -11,7 +11,7 @@ The purpose of this project is to allow each student to develop their own idea f
 
 ## Challenges
 There is no Google Trends API to gather data from.
-I figured out that the data was available in an HTML script tag at the bottom of a particular Google URL, but it was not in a usable format. I was able to use the data in my d3 visualization by converting the it into a string, and using the Function constructor to make an object out of it.
+I figured out that the data was available in an HTML script tag at the bottom of a particular Google URL, but it was not in a usable format. I was able to use the data in my d3 visualization by converting the it into a string, and using the Function constructor to make an object out of it. I was able to use that data structure to implement a bar chart with D3, however I am not working on making a dynamic stacked bar chart for multiple Google keywords.
 
 ## Code Structure
 
@@ -36,6 +36,6 @@ We have used many open source technologies for completion of this project as fol
 ####To Do Items
 * Make svg graph responsive to window size
 * Improve the user interface in general - Lighter colors, friendlier/rouder edges, title formatting, fonts, etc.
-* Support multiple google trend keywords via stacked bar chart
+* Support multiple google trend keywords via stacked bar chart (in process)
 * Incorporate other forms of social media such as Facebook mentions, instagram mentions, etc. (Twitter did not previously work)
 
