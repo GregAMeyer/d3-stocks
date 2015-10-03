@@ -69,7 +69,7 @@ router.post('/:term/:start/:end', function (req, res) {
                 }
                 // console.log('google trend after manipulation: ', googleTrendData)
                 console.log('newdata for stack layout: ', newData)
-        		res.send(googleTrendData) 
+        		res.send(newData) 
             }
     })
 

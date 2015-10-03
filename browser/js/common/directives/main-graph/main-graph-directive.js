@@ -24,6 +24,8 @@ app.directive('mainGraph', function () {
       var colorScale = d3.scale.ordinal()
           .range(["#004C2E", "#64AD4C", "#6b486b", "#a05d56", "#d0743c"])
           .domain([1,2]); ///////////////extend this when its working with two
+      var z = d3.scale.ordinal().range(["darkblue", "blue", "lightblue"])
+
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
                           .tickSize(-height)
@@ -61,9 +63,7 @@ app.directive('mainGraph', function () {
         .call(yAxis)
                        	
 //------- GOOGLE TREND BARS ON GRAPH (INITIALLY) -----------
-      //console.log('trenddata format stack: ', scope.trenddata)
       var stacked = d3.layout.stack()(scope.trenddata)
-      //console.log('stacked: ', stacked)
 /*
 stacked = [
     [
@@ -81,22 +81,19 @@ stacked = [
                      new Date(stacked[0][stacked[0].length - 1].date)] )
           .range([(2*margin)+2, width]);
       var yTrendScale = d3.scale.linear()
-          .domain( [ d3.min(stacked, function(d){ 
+          .domain( [ 
+            d3.min(stacked, function(d){ 
             var arr = []; 
-            d.forEach(function(el){
-              arr.push(el.y+el.y0)
-            })
+            d.forEach(function(el){ arr.push(el.y+el.y0) })
             return Math.min(...arr)
           }),
-                     d3.max(stacked, function(d){ 
+            d3.max(stacked, function(d){ 
             var arr = [];
-            d.forEach(function(el){
-              arr.push(el.y+el.y0)
-            })
+            d.forEach(function(el){ arr.push(el.y+el.y0) })
             return Math.max(...arr)
           }) 
                   ])
-          .range([height, (margin+5)])
+          .range([height, 0])
           .nice();
       
       var yAxisTrend = d3.svg.axis()
@@ -109,8 +106,6 @@ stacked = [
           .attr("transform", "translate("+(width+2*margin)+","+(2*margin)+")")
           .call(yAxisTrend) 
 
-      var z = d3.scale.ordinal().range(["darkblue", "blue", "lightblue"])
-
       // Add a group for each column.
       var valgroup = svg.selectAll("g.valgroup")
             .data(stacked)
@@ -120,11 +115,17 @@ stacked = [
             .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
       // Add a rect for each date.
       var rect = valgroup.selectAll("rect")
-            .data(function(d){return d})
+            .data(function(d){ console.log('data d in rect ', d); return d})
             .enter().append("svg:rect")
+            .attr('class', 'googleBars')
             .attr("x", function(d) { return xTrendScale(new Date(d.date))})
-            .attr("y", function(d) { return yTrendScale(d.y0) - yTrendScale(d.y) })
-            .attr("height", function(d) { return yTrendScale(d.y); })
+            .attr("y", function(d) { return 2*margin+height - yTrendScale(d.y-d.y0) })
+            .attr("height", function(d) { 
+              // console.log('rect yTS dy', yTrendScale(d.y));
+              // console.log('rect yTS dy0', yTrendScale(d.y0));
+              // console.log('rect yTS d', yTrendScale(d));
+              return yTrendScale(d.y-d.y0) 
+            })
             .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)});
  
 //------- LINE ON GRAPH (INITIALLY) ----------------------
@@ -172,21 +173,36 @@ stacked = [
 	    }
 // ---------- CHANGE BARS FOR NEW TREND DATA ------
 var changeBars = function(){
-      xTrendScale.domain( [ new Date(scope.trenddata[0][0].v), 
-                            new Date(scope.trenddata[scope.trenddata.length - 1][0].v)] )
-      yTrendScale.domain( [ d3.min(scope.trenddata, function(d){ return d[0].total/20 }), 
-                            d3.max(scope.trenddata, function(d){ return d[0].total }) ])
-      // var newBars = svg.selectAll('rect.bar')
-      //        .data(scope.trenddata);
-      // newBars.exit().remove()
-      // newBars.enter().append('rect.bar')
-      // newBars.transition()
-      //        .duration(2000)
-      //        .delay(function(d,i){ return i*10 })
-      //        .attr("x", function(d, i) { return xTrendScale(new Date(d[0].v)); })
-      //        .attr("y", function(d) { return yTrendScale(d.y1) })
-      //        .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
-      //        .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)}); 
+      var stackedLayout = d3.layout.stack()(scope.trenddata)
+      
+      console.log('stacked in changebars: ', stackedLayout)
+
+      xTrendScale.domain( [ new Date(stackedLayout[0][0].date), 
+                            new Date(stackedLayout[0][stackedLayout[0].length - 1].date)] )
+      yTrendScale.domain( [ 
+            d3.min(stackedLayout, function(d){ 
+            var arr = []; 
+            d.forEach(function(el){ arr.push(el.y+el.y0) })
+            return Math.min(...arr)
+          }),
+            d3.max(stacked, function(d){ 
+            var arr = [];
+            d.forEach(function(el){ arr.push(el.y+el.y0) })
+            return Math.max(...arr)
+          }) 
+                  ])
+      
+      var newBars = svg.selectAll('rect.googleBars')
+             .data(stackedLayout);
+      newBars.exit().remove()
+      newBars.enter().append('rect.googleBars')
+      newBars.transition()
+             .duration(2000)
+             .delay(function(d,i){ return i*10 })
+            .attr("x", function(d) { return xTrendScale(new Date(d.date))})
+            .attr("y", function(d) { return 2*margin+height - yTrendScale(d.y-d.y0) })
+            .attr("height", function(d) { return yTrendScale(d.y-d.y0) })
+            .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)});
 ////////////
       // var newBars = svg.selectAll('.googleBars').data([])
       // newBars.exit().remove();
