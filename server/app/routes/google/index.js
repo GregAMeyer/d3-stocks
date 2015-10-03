@@ -36,18 +36,40 @@ router.post('/:term/:start/:end', function (req, res) {
                     arr.splice(1,2)
                     arr.splice(2,3)
                     arr.splice(3,3)
-                    var y0 = 0;
-                    var searchDataIndexes = [1,2] //the search frequency indexes
-                    //eventually to have the name in there
-                    arr[0].searches = searchDataIndexes.map(function(index) { 
-                      return {index: index-1, y0: y0, y1: y0 += +arr[index]}; 
-                    }); //index-1 matches to the colorScale
-                    //d.total = new property on each element that should represent sum of each search value
-                    arr[0].total = arr[0].searches[0].y1+arr[0].searches[1].y1//+d.searches[2].y1+d.searches[3].y1
-                    // ^^^ make this flexible later but this should work for now
+                    delete arr[0]['f']
+                    arr[0].date = arr[0].v
+                    delete arr[0]['v']
+                    arr[0].term1 = term.split(',')[0]
+                    arr[0].term2 = term.split(', ')[1]
+                    arr[0].term1Val = arr[1]
+                    arr[0].term2Val = arr[2]  
+                    arr.pop()
+                    arr.pop()
                 });
+                var newData = [];
+                newData[0] = [];
+                newData[1] = [];
+
+                for(var i=0; i<googleTrendData.length; i++){
+                    var newObj1 = {
+                        date: googleTrendData[i][0].date,
+                        x: i,
+                        y: googleTrendData[i][0].term1Val,
+                        term: googleTrendData[i][0].term1
+                    }
+                    var newObj2 = {
+                        date: googleTrendData[i][0].date,
+                        x: i,
+                        y: googleTrendData[i][0].term2Val,
+                        term: googleTrendData[i][0].term2
+                    }
+                    
+                    newData[0].push(newObj1);
+                    newData[1].push(newObj2);
+                }
                 // console.log('google trend after manipulation: ', googleTrendData)
-        		res.send(googleTrendData) 
+                console.log('newdata for stack layout: ', newData)
+        		res.send(newData) 
             }
     })
 

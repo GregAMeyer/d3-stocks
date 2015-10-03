@@ -41,7 +41,219 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
      {"Close": "39","Date": "2015-02-18"},{"Close": "33","Date": "2015-02-16"},{"Close": "32","Date": "2015-02-15"},
      {"Close": "35","Date": "2015-02-14"},{"Close": "32","Date": "2015-02-13"},{"Close": "30","Date": "2015-02-12"}		]; 
     
-    $scope.trenddata = [
+    $scope.trenddata = [ [ { date: 'Wed Apr 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 0,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Apr 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 1,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Apr 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 2,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Apr 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 3,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed May 06 2015 08:00:00 GMT-0400 (EDT)',
+      x: 4,
+      y: 13,
+      term: 'dude' },
+    { date: 'Wed May 13 2015 08:00:00 GMT-0400 (EDT)',
+      x: 5,
+      y: 13,
+      term: 'dude' },
+    { date: 'Wed May 20 2015 08:00:00 GMT-0400 (EDT)',
+      x: 6,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed May 27 2015 08:00:00 GMT-0400 (EDT)',
+      x: 7,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Jun 03 2015 08:00:00 GMT-0400 (EDT)',
+      x: 8,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Jun 10 2015 08:00:00 GMT-0400 (EDT)',
+      x: 9,
+      y: 13,
+      term: 'dude' },
+    { date: 'Wed Jun 17 2015 08:00:00 GMT-0400 (EDT)',
+      x: 10,
+      y: 13,
+      term: 'dude' },
+    { date: 'Wed Jun 24 2015 08:00:00 GMT-0400 (EDT)',
+      x: 11,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed Jul 01 2015 08:00:00 GMT-0400 (EDT)',
+      x: 12,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed Jul 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 13,
+      y: 13,
+      term: 'dude' },
+    { date: 'Wed Jul 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 14,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed Jul 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 15,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Jul 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 16,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Aug 05 2015 08:00:00 GMT-0400 (EDT)',
+      x: 17,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Aug 12 2015 08:00:00 GMT-0400 (EDT)',
+      x: 18,
+      y: 11,
+      term: 'dude' },
+    { date: 'Wed Aug 19 2015 08:00:00 GMT-0400 (EDT)',
+      x: 19,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed Aug 26 2015 08:00:00 GMT-0400 (EDT)',
+      x: 20,
+      y: 12,
+      term: 'dude' },
+    { date: 'Wed Sep 02 2015 08:00:00 GMT-0400 (EDT)',
+      x: 21,
+      y: 11,
+      term: 'dude' } ],
+  [ { date: 'Wed Apr 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 0,
+      y: 100,
+      term: 'sweet' },
+    { date: 'Wed Apr 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 1,
+      y: 97,
+      term: 'sweet' },
+    { date: 'Wed Apr 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 2,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Apr 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 3,
+      y: 97,
+      term: 'sweet' },
+    { date: 'Wed May 06 2015 08:00:00 GMT-0400 (EDT)',
+      x: 4,
+      y: 97,
+      term: 'sweet' },
+    { date: 'Wed May 13 2015 08:00:00 GMT-0400 (EDT)',
+      x: 5,
+      y: 100,
+      term: 'sweet' },
+    { date: 'Wed May 20 2015 08:00:00 GMT-0400 (EDT)',
+      x: 6,
+      y: 98,
+      term: 'sweet' },
+    { date: 'Wed May 27 2015 08:00:00 GMT-0400 (EDT)',
+      x: 7,
+      y: 97,
+      term: 'sweet' },
+    { date: 'Wed Jun 03 2015 08:00:00 GMT-0400 (EDT)',
+      x: 8,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Jun 10 2015 08:00:00 GMT-0400 (EDT)',
+      x: 9,
+      y: 95,
+      term: 'sweet' },
+    { date: 'Wed Jun 17 2015 08:00:00 GMT-0400 (EDT)',
+      x: 10,
+      y: 94,
+      term: 'sweet' },
+    { date: 'Wed Jun 24 2015 08:00:00 GMT-0400 (EDT)',
+      x: 11,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Jul 01 2015 08:00:00 GMT-0400 (EDT)',
+      x: 12,
+      y: 94,
+      term: 'sweet' },
+    { date: 'Wed Jul 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 13,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Jul 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 14,
+      y: 99,
+      term: 'sweet' },
+    { date: 'Wed Jul 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 15,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Jul 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 16,
+      y: 99,
+      term: 'sweet' },
+    { date: 'Wed Aug 05 2015 08:00:00 GMT-0400 (EDT)',
+      x: 17,
+      y: 98,
+      term: 'sweet' },
+    { date: 'Wed Aug 12 2015 08:00:00 GMT-0400 (EDT)',
+      x: 18,
+      y: 98,
+      term: 'sweet' },
+    { date: 'Wed Aug 19 2015 08:00:00 GMT-0400 (EDT)',
+      x: 19,
+      y: 98,
+      term: 'sweet' },
+    { date: 'Wed Aug 26 2015 08:00:00 GMT-0400 (EDT)',
+      x: 20,
+      y: 96,
+      term: 'sweet' },
+    { date: 'Wed Sep 02 2015 08:00:00 GMT-0400 (EDT)',
+      x: 21,
+      y: 96,
+      term: 'sweet' } ] ]
+
+
+
+  $scope.getNewData = function(stockSymbol, startDate, endDate){
+		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
+		.then(function(newStockData){
+            $scope.stockClose = newStockData
+			return $scope.stockClose;
+		})
+	}
+	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
+		return apiFactory.getTrendData(trendTerm, startDate, endDate)
+		.then(function(newTrendData){
+            $scope.trendData = newTrendData;
+			return $scope.trendData; 
+		})
+	}
+})
+
+/*
+
+ // newTrendData.forEach(function(d) {
+            //     var y0 = 0;
+            //     var colorScaleDomain = [1,2] //-> the indexes that hold the search frequency values
+            //     //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
+            //     d.searches = colorScaleDomain.map(function(index) { 
+            //       return {index: index, y0: y0, y1: y0 += +d[index]}; 
+            //     });
+            //     d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
+            //     d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
+            //     //d.total = new property on each element that should represent sum of each search value
+            //     d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
+            //     // ^^^ make this flexible later but this should work for now
+            // });
+
+
+[
     [{
             "v": "Wed March 04 2015 08: 00: 00 GMT - 0400(EDT)",
             // "f": 'Apr 5 – 11, 2015',
@@ -482,39 +694,6 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     ],
 ]
 
-
-
-  $scope.getNewData = function(stockSymbol, startDate, endDate){
-		return apiFactory.getNewStockData(stockSymbol, startDate, endDate)
-		.then(function(newStockData){
-            $scope.stockClose = newStockData
-			return $scope.stockClose;
-		})
-	}
-	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
-		return apiFactory.getTrendData(trendTerm, startDate, endDate)
-		.then(function(newTrendData){
-            $scope.trendData = newTrendData;
-			return $scope.trendData; 
-		})
-	}
-})
-
-/*
-
- // newTrendData.forEach(function(d) {
-            //     var y0 = 0;
-            //     var colorScaleDomain = [1,2] //-> the indexes that hold the search frequency values
-            //     //d.searches = new array on each element in data (eventually to have the name in there - can do that in the back end with the req params maybe, just tack it on before sending to front end, also want to do the factory manipulation in back end at some point)
-            //     d.searches = colorScaleDomain.map(function(index) { 
-            //       return {index: index, y0: y0, y1: y0 += +d[index]}; 
-            //     });
-            //     d.y0s = d.searches.map(function(el){ return el.y0}) //all the numbers starting points will be based on
-            //     d.y1s = d.searches.map(function(el){ return el.y1}) //diff between y1 and y0 is basis for height
-            //     //d.total = new property on each element that should represent sum of each search value
-            //     d.total = d.searches[0].y1+d.searches[1].y1//+d.searches[2].y1+d.searches[3].y1
-            //     // ^^^ make this flexible later but this should work for now
-            // });
 
 $scope.trenddata = [[{
         "v": "2015-03-04T13:00:00.000Z",
