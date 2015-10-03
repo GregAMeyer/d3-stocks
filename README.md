@@ -25,7 +25,7 @@ Backend (Node, Express) application.
 
 ## External Libraries and Technologies Used
 
-We have used many open source technologies for completion of this project as follows:
+I used several open source technologies for completion of this project:
 * Frontend Application
   * Angular
   * D3
@@ -34,8 +34,8 @@ We have used many open source technologies for completion of this project as fol
   * Express
 
 ####To Do Items
+* Support multiple google trend keywords via stacked bar chart (in process)
 * Make svg graph responsive to window size
 * Improve the user interface in general - Lighter colors, friendlier/rouder edges, title formatting, fonts, etc.
-* Support multiple google trend keywords via stacked bar chart (in process)
 * Incorporate other forms of social media such as Facebook mentions, instagram mentions, etc. (Twitter did not previously work)
 
