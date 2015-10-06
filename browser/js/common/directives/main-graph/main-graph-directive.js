@@ -127,25 +127,12 @@ stacked = [
             .attr("class", "valgroup")
             .style("fill", function(d, i) { return z(i); })
             .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
-            // .attr("transform", function(d) {////////////////////// NOT
-            //   return "translate(" + x(d) + ",0)";///////////////// NEEDED
-            // });/////////////////////////////////////////////////// PERIOD
       // Add a rect for each date.
       var rect = valgroup.selectAll("rect")
             .data(function(d){ console.log('data d in rect ', d); return d})
             .enter().append("svg:rect")
             .attr('class', 'googleBars')
             .attr("x", function(d) { return xTrendScale(new Date(d.date)) })
-            // .attr("y", function(d) { 
-            //   var diff = d.y-d.y0;
-            //   var absDiff = Math.abs(diff);
-            //   return 2*margin+height - yTrendScale(absDiff) 
-            //   })
-            // .attr("height", function(d) { 
-            //   var diff = d.y-d.y0;
-            //   var absDiff = Math.abs(diff);
-            //   return yTrendScale(absDiff) 
-            // })
             .attr("y", y1)
             .attr("height", function(d) {
               console.log('d', d);
@@ -259,64 +246,12 @@ var changeBars = function(){
              .delay(function(d,i){ return i*20 })
             .attr('class', 'googleBars')
             .attr("x", function(d) { return xTrendScale(new Date(d.date)) })
-            // .attr("y", function(d) { 
-            //   var diff = d.y-d.y0;
-            //   var absDiff = Math.abs(diff);
-            //   return 2*margin+height - yTrendScale(absDiff) 
-            //   })
-            // .attr("height", function(d) { 
-            //   var diff = d.y-d.y0;
-            //   var absDiff = Math.abs(diff);
-            //   return yTrendScale(absDiff) 
-            // })
             .attr("y", y1)
             .attr("height", function(d) {
               return y0(d) - y1(d);
             })
             .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)})
             .attr('opacity', '.25');
-
-
-///// trial        
-      // var newBarGroups = svg.selectAll('rect.googleBars')
-      //        .data(stackedLayout);
-      // newBarGroups.exit().remove()
-      // var newBars = newBarGroups.selectAll("rect")
-      // .data(function(d){ console.log('data d in rect ', d); return d})
-      //       .enter().append("svg:rect")
-      //       .attr('class', 'googleBars')
-      //       .attr("x", function(d) { return xTrendScale(new Date(d.date))})
-      //       .attr("y", function(d) { return 2*margin+height - yTrendScale(d.y-d.y0) })
-      //       .attr("height", function(d) { 
-      //         return yTrendScale(d.y-d.y0) 
-      //       })
-      //       .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)});
-
-//////// trial     
-      // newBars.transition()
-      //        .duration(2000)
-      //        .delay(function(d,i){ return i*10 })
-      //       .attr("x", function(d) { return xTrendScale(new Date(d.date))})
-      //       .attr("y", function(d) { return 2*margin+height - yTrendScale(d.y-d.y0) })
-      //       .attr("height", function(d) { return yTrendScale(d.y-d.y0) })
-      //       .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)});
-
-//////////// trial 
-      // var newBars = svg.selectAll('.googleBars').data([])
-      // newBars.exit().remove();
-      // newBars.data(scope.trenddata, function(d) { return d[0].searches })
-      //     .enter()
-      //     .append('rect.bar.googleBars')
-      //     .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata.length)})
-      //     .attr("y", function(d) { return yTrendScale(d.y1) })
-      //     .attr("height", function(d) { return yTrendScale(d.y0)-yTrendScale(d.y1)})
-      //     .style("fill", function(d) { return colorScale(d.index); })
-      //     .attr("transform", "translate("+(1+2*margin)+","+(2*margin)+")")
-      //     .attr('opacity', ".75");
-      // newBars.transition()
-      //         .duration(2000)
-      //         .delay(function(d,i){ return i*10 });
-
 
 // new Y axis
       var newYTrend = svg.selectAll(".y.axis.trend")
