@@ -21,7 +21,7 @@
 	    margin-left: -250px;
 	    /*overflow-y: auto;*/
 	    background: black;
-	    opacity: .75; /*added*/
+	    opacity: .75;
 	    -webkit-transition: all 0.5s ease;
 	    -moz-transition: all 0.5s ease;
 	    -o-transition: all 0.5s ease;
@@ -97,6 +97,10 @@
 		line-height: 30px;
 		width: 180px;
 		color: $silver;
+
+		position: relative; 
+		z-index: 100000;
+
 		p {
 			&:hover{
 			color: black;

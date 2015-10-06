@@ -45,6 +45,7 @@ router.post('/:term/:start/:end', function (req, res) {
                     arr[0].term2Val = arr[2]  
                     arr.pop()
                     arr.pop()
+// theres some extra stuff in here that doesn't need to be done
                 });
                 var newData = [];
                 newData[0] = [];
@@ -68,7 +69,7 @@ router.post('/:term/:start/:end', function (req, res) {
                     newData[1].push(newObj2);
                 }
                 // console.log('google trend after manipulation: ', googleTrendData)
-                console.log('newdata for stack layout: ', newData)
+                // console.log('newdata for stack layout: ', newData)
         		res.send(newData) 
             }
     })
