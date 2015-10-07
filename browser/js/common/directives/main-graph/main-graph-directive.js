@@ -76,8 +76,8 @@ app.directive('mainGraph', function () {
             }),
             // x = function(d) { return d.x * width / mx; },
             y0 = function(d) { return realHeight - d.y0 * realHeight / my; },
-            y1 = function(d) { return realHeight - (d.y + d.y0) * (realHeight) / my; },
-            y2 = function(d) { return d.y * (realHeight) / mz; }; // or `my` not rescale
+            y1 = function(d) { return realHeight - (d.y + d.y0) * (realHeight) / my; };
+            
 /*
 stacked = [
     [
@@ -135,9 +135,6 @@ stacked = [
             .attr("x", function(d) { return xTrendScale(new Date(d.date)) })
             .attr("y", y1)
             .attr("height", function(d) {
-              console.log('d', d);
-              console.log('y0d', y0(d));
-              console.log('y1d', y1(d));
               return y0(d) - y1(d);
             })
             .attr("width", function(d){ return (-20+width-2*margin)/(scope.trenddata[0].length)})
@@ -185,8 +182,6 @@ stacked = [
              	    .call(yAxis);
   			newY.transition()
   				.duration(2000);
-
-
 	    }
 // ---------- CHANGE BARS FOR NEW TREND DATA ------
 var changeBars = function(){
@@ -205,13 +200,11 @@ var changeBars = function(){
             }),
             // x = function(d) { return d.x * width / mx; },
             y0 = function(d) { return realHeight - d.y0 * realHeight / my; },
-            y1 = function(d) { return realHeight - (d.y + d.y0) * realHeight / my; },
-            y2 = function(d) { return d.y * realHeight / mz; }; // or `my` not rescale
+            y1 = function(d) { return realHeight - (d.y + d.y0) * realHeight / my; };
+            
 
       xTrendScale.domain( [ new Date(stackedLayout[0][0].date), 
                             new Date(stackedLayout[0][stackedLayout[0].length - 1].date)] );
-      
-      console.log('domain before', yTrendScale.domain())
 
       yTrendScale.domain( [ 
             d3.min(stackedLayout, function(d) {
@@ -225,8 +218,6 @@ var changeBars = function(){
               });
             }) 
                   ]);
-
-      console.log('domain after', yTrendScale.domain())
       
       svg.selectAll('g.valgroup, rect.googleBars').remove()
       

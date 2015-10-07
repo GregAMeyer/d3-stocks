@@ -118,13 +118,9 @@ router.post('/:term/:start/:end', function (req, res) {
                         arr.pop()
                         arr.pop()
                         arr.pop()
-                    }
-                    
-// theres some extra stuff in here that doesn't need to be done
+                    }    
+// theres some extra stuff in here that doesn't need to be done, but makes it cleaner
                 });
-            
-            // console.log('googleTrendData before manip', googleTrendData);
-
                 var newData = [];
                 newData[0] = [];
                 if(googleTrendData[1][0].term2Val) newData[1] = [];
@@ -178,14 +174,11 @@ router.post('/:term/:start/:end', function (req, res) {
                     
                     newData[0].push(newObj1);
                 }
-
                 // console.log('google trend after manipulation: ', googleTrendData)
-                console.log('newdata for stack layout: ', newData)
+                // console.log('newdata for stack layout: ', newData)
         		res.send(newData)
-             
             }
     })
-
 });
 
 //http:www.google.com/trends/fetchComponent?hl=en-US&q=iphone&date=03%2F2015%206m&cmpt=q&tz=Etc%2FGMT%2B4&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=300
