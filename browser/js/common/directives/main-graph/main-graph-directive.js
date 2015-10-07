@@ -23,7 +23,7 @@ app.directive('mainGraph', function () {
 			    .range([height, 0])
 			    .nice();
 
-      var z = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue"])
+      var z = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue", '#00B2B2', '#297ACC'])
 
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
