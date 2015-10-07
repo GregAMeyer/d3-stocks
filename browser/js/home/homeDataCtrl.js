@@ -232,6 +232,4 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     { date: 'Wed Sep 02 2015 08:00:00 GMT-0400 (EDT)',
       x: 21, y: 36, term: 'oranges' } ] ]
 
-
-
 })
