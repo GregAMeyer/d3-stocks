@@ -77,19 +77,7 @@ app.directive('mainGraph', function () {
             // x = function(d) { return d.x * width / mx; },
             y0 = function(d) { return realHeight - d.y0 * realHeight / my; },
             y1 = function(d) { return realHeight - (d.y + d.y0) * (realHeight) / my; };
-            
-/*
-stacked = [
-    [
-      {date: , term: dude, x: 0, y: 10, y0: 0},
-      {date: , term: dude, x: 1, y: 12, y0: 0}
-    ],
-    [
-      {date: , term: sweet, x: 0, y: 15, y0: 10},
-      {date: , term: sweet, x: 1, y: 18, y0: 12}
-    ],
-]
-*/
+          
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(stacked[0][0].date), 
                      new Date(stacked[0][stacked[0].length - 1].date)] )
@@ -129,7 +117,7 @@ stacked = [
             .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
       // Add a rect for each date.
       var rect = valgroup.selectAll("rect")
-            .data(function(d){ console.log('data d in rect ', d); return d})
+            .data(function(d){ return d})
             .enter().append("svg:rect")
             .attr('class', 'googleBars')
             .attr("x", function(d) { return xTrendScale(new Date(d.date)) })
@@ -272,16 +260,29 @@ var changeBars = function(){
           }
           return
         })
+// ------- Make graph size responsive -------------
          ///////FOR WINDOW RESIZING
           // $scope.$watch(function() { return $window.innerWidth;}, function(value) {
           //       console.log(value);
           // });
-// ------- Make graph size responsive -------------
-        var resize = function(){
-          console.log('resizing')
-          var width = parseInt(d3.select("#graph").style("width")) - margin*2;
-          var height = parseInt(d3.select("#graph").style("height")) - margin*2;
-        }
+        // var resize = function(){
+        //   console.log('resizing')
+        //   var width = parseInt(d3.select("#graph").style("width")) - margin*2;
+        //   var height = parseInt(d3.select("#graph").style("height")) - margin*2;
+        // }
     	}
     }
 });
+
+/*
+stacked = [
+    [
+      {date: , term: dude, x: 0, y: 10, y0: 0},
+      {date: , term: dude, x: 1, y: 12, y0: 0}
+    ],
+    [
+      {date: , term: sweet, x: 0, y: 15, y0: 10},
+      {date: , term: sweet, x: 1, y: 18, y0: 12}
+    ],
+]
+*/
