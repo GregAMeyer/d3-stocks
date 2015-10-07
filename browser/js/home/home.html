@@ -23,11 +23,11 @@
                 <li class='row'>
                 	<p><a>Google Keyword: [Green Bars]<input type='text' ng-model='trendTerm' placeholder="i.e. 'iPhone'"></p></a>
                 </li>
-                <li class='row'>
+                <!-- <li class='row'>
                 	<button class='btn dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET STOCK</button>
-                </li>
+                </li> -->
                 <li class='row'>
-                	<button class='btn dataButton' ng-click='getNewTrendData(trendTerm, startDate, endDate)'>GET KEYWORD</button>
+                	<button class='btn dataButton' ng-click='getNewTrendData(trendTerm, startDate, endDate); getNewData(stockSymbol, startDate, endDate) '>GET KEYWORD and STOCK</button>
                 </li>
             </ul>
         </div>

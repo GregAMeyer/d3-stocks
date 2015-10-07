@@ -12,7 +12,7 @@ app.directive('mainGraph', function () {
 			var margin = 20;
 			var width = 850-(2*margin);
 			var height = 500-(2*margin);
-      var realHeight = (2*margin)+height
+      var realHeight = (2*margin)+height;
 			var xScale = d3.time.scale()
 			    .domain( [new Date(scope.stockdata[scope.stockdata.length - 1].Date), 
                     new Date(scope.stockdata[0].Date)] )
@@ -22,8 +22,7 @@ app.directive('mainGraph', function () {
                     1.05*d3.max(scope.stockdata, function(d) { return d.Close; })] )
 			    .range([height, 0])
 			    .nice();
-
-      var z = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue", '#00B2B2', '#297ACC'])
+      var colorScale = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue", '#00B2B2', '#297ACC'])
 
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
@@ -63,20 +62,14 @@ app.directive('mainGraph', function () {
                        	
 //------- GOOGLE TREND BARS ON GRAPH (INITIALLY) -----------
       var stacked = d3.layout.stack()(scope.trenddata);
-       var mx = 20,
-            my = d3.max(stacked, function(d) {
-              return d3.max(d, function(d) {
-                return d.y0 + d.y + margin; //why + margin?
-              });
-            }),
-            mz = d3.max(stacked, function(d) {
-              return d3.max(d, function(d) {
-                return d.y;
-              });
-            }),
-            // x = function(d) { return d.x * width / mx; },
-            y0 = function(d) { return realHeight - d.y0 * realHeight / my; },
-            y1 = function(d) { return realHeight - (d.y + d.y0) * (realHeight) / my; };
+      var mx = 20;
+      var my = d3.max(stacked, function(d) { return d3.max(d, function(d) {
+                  return d.y0 + d.y + margin; //why + margin?
+                });
+              })
+      var mz = d3.max(stacked, function(d) { return d3.max(d, function(d) { return d.y; }); });
+      var y0 = function(d) { return realHeight - d.y0 * realHeight / my; };
+      var y1 = function(d) { return realHeight - (d.y + d.y0) * (realHeight) / my; };
           
       var xTrendScale = d3.time.scale()
           .domain( [ new Date(stacked[0][0].date), 
@@ -113,8 +106,8 @@ app.directive('mainGraph', function () {
             .data(stacked)
             .enter().append("svg:g")
             .attr("class", "valgroup")
-            .style("fill", function(d, i) { return z(i); })
-            .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
+            .style("fill", function(d, i) { return colorScale(i); })
+            .style("stroke", function(d, i) { return d3.rgb(colorScale(i)).darker(); });
       // Add a rect for each date.
       var rect = valgroup.selectAll("rect")
             .data(function(d){ return d})
@@ -214,8 +207,8 @@ var changeBars = function(){
             .data(stackedLayout)
             .enter().append("svg:g")
             .attr("class", "valgroup")
-            .style("fill", function(d, i) { return z(i); })
-            .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
+            .style("fill", function(d, i) { return colorScale(i); })
+            .style("stroke", function(d, i) { return d3.rgb(colorScale(i)).darker(); });
       // Add a rect for each date.
       var rect = valgroup.selectAll("rect")
             .data(function(d){ return d})
@@ -247,7 +240,7 @@ var changeBars = function(){
           if(newValues == oldValues) { return; }
         	if(newValues) {
             	scope.stockdata = newValues;
-            	changeStockLine()
+              changeStockLine()
         	}
         	return
        	})
