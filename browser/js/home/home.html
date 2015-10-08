@@ -4,38 +4,72 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a>
                         Stock/Search
                     </a>
                 </li>
-                <li class='row'>
-                	<a>Stock Symbol: [White Line]
-                		<input type='text' 
+                <li class='row oddRow stockRow'>
+                	<a>Stock Symbol:
+                		<input type='text'
+                            class='stockSymbInput' 
 							ng-model='stockSymbol' 
-							placeholder="i.e. 'AAPL'"></a>
+							placeholder=" i.e. 'AAPL'"></a>
                 </li>
-                <li class='row'>
-                	<a>Start Date:<input type='date' ng-model='startDate'></a>
+                <li class='row evenRow'>
+                    <a class='startDate' ng-click="isCollapsedStart=!isCollapsedStart">
+                    Start Date:    
+                    <span ng-hide='startDate'> (Select)</span>
+                    <span>{{startDate | date : format: short}}</span>
+                    <span class="glyphicon glyphicon-calendar select"></span>
+                    </a>
+                    <div class='dateDiv' collapse="isCollapsedStart">
+                        <datepicker class='datepicker my-datepicker' ng-model='startDate'></datepicker>
+                    </div>
                 </li>
-                <li class='row'>
-                	<p><a>End Date:<input type='date' ng-model='endDate'></p></a>
+
+                <li class='row oddRow'>
+                    <a class='endDate' ng-click="isCollapsedEnd=!isCollapsedEnd">
+                    End Date:
+                    <span ng-hide='endDate'> (Select)</span>
+                    <span>{{endDate | date : format: short}}</span>
+                    <span class="glyphicon glyphicon-calendar select"></span>
+                    </a>
+                    <div class='dateDiv' collapse="isCollapsedEnd">
+                        <datepicker class='datepicker my-datepicker' ng-model='endDate'></datepicker>
+                    </div>
                 </li>
-                <li class='row'>
-                	<p><a>Google Keyword: [Green Bars]<input type='text' ng-model='trendTerm' placeholder="i.e. 'iPhone'"></p></a>
+                <li class='row googleRow evenRow'>
+                	<p><a>Google Keyword 1:<input type='text' ng-model='trendTerm1' placeholder=" i.e. 'iPhone'"></p></a>
                 </li>
-                <!-- <li class='row'>
-                	<button class='btn dataButton' ng-click='getNewData(stockSymbol, startDate, endDate)'>GET STOCK</button>
-                </li> -->
-                <li class='row'>
-                	<button class='btn dataButton' ng-click='getNewTrendData(trendTerm, startDate, endDate); getNewData(stockSymbol, startDate, endDate) '>GET KEYWORD and STOCK</button>
+                <li class='row googleRow oddRow'>
+                    <p><a>Google Keyword 2:<input type='text' ng-model='trendTerm2' placeholder=" i.e. 'iPad'"></p></a>
+                </li>
+                <li class='row googleRow evenRow'>
+                    <p><a>Google Keyword 3:<input type='text' ng-model='trendTerm3' placeholder=" i.e. 'iPod'"></p></a>
+                </li>
+                <li class='row googleRow oddRow'>
+                    <p><a>Google Keyword 4:<input type='text' ng-model='trendTerm4' placeholder=" i.e. 'iMac'"></p></a>
+                </li>
+                <li class='row googleRow evenRow'>
+                    <p><a>Google Keyword 5:<input type='text' ng-model='trendTerm5' placeholder=" i.e. 'iDk'"></p></a>
+                </li>
+                <li class='row googleRow oddRow buttonRow'>
+                	<button class='btn dataButton' ng-click='getNewTrendData(startDate, endDate); getNewData(stockSymbol, startDate, endDate) '>Update Graph</button>
                 </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 	<main-graph class='col-lg-12' stockdata="stockClose" trenddata='trendData'></main-graph>
+
+<!-- testing formatting of datePicker outside of sideBar -->
+<!-- <a class='datepickerMove' ng-click="isCollapsed=!isCollapsed">Toggle DatePicker</a>
+<div class='datepickerMove' collapse="isCollapsed">
+    <datepicker class='datepicker my-datepicker' ng-model='startDate'></datepicker>
+</div> -->
+<!-- testing formatting of datePicker outside of sideBar -->
+
 <br>
 <br>
-<!-- <div>{{trendData}}</div> -->
 
 </section>
 

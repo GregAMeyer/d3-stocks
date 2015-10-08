@@ -1,2 +1,16 @@
+/* end fsg defaults */
+
+@import url(https://fonts.googleapis.com/css?family=Play:400,700);
+
+body {
+  background-image: url('../scss/abstractBKG.jpg');
+  font-family: "Play";
+  /*background-size: 100%; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 @import "fullstack-logo";
 @import "navbar";

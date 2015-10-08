@@ -7,13 +7,27 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
 			return $scope.stockClose;
 		})
 	}
-	$scope.getNewTrendData = function(trendTerm, startDate, endDate){
+	$scope.getNewTrendData = function(startDate, endDate){
+        var tt1 = $scope.trendTerm1 || "";
+        var tt2 = $scope.trendTerm2 || "";
+        var tt3 = $scope.trendTerm3 || "";
+        var tt4 = $scope.trendTerm4 || "";
+        var tt5 = $scope.trendTerm5 || "";
+
+        var trendTerm = tt1+","+tt2+","+tt3+","+tt4+","+tt5;
+
 		return apiFactory.getTrendData(trendTerm, startDate, endDate)
 		.then(function(newTrendData){
             $scope.trendData = newTrendData;
 			return $scope.trendData; 
 		})
 	}
+    $scope.isCollapsedStart = true;
+    $scope.isCollapsedEnd = true;
+    $scope.isCollapsed3 = true;
+    $scope.isCollapsed4 = true;
+    $scope.isCollapsed5 = true;
+
     //example data in the format the YQL & Custom Trend Function returns
     $scope.stockClose = [
      {"Close": "59","Date": "2015-08-04"},{"Close": "57","Date": "2015-08-03"},{"Close": "58","Date": "2015-07-31"},
@@ -230,6 +244,50 @@ app.controller('homeDataCtrl', function($scope, apiFactory) {
     { date: 'Wed Aug 26 2015 08:00:00 GMT-0400 (EDT)',
       x: 20, y: 25, term: 'oranges' },
     { date: 'Wed Sep 02 2015 08:00:00 GMT-0400 (EDT)',
-      x: 21, y: 36, term: 'oranges' } ] ]
+      x: 21, y: 36, term: 'oranges' } ],
+    [   { date: 'Wed Apr 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 0, y: 15, term: 'bananas' },
+    { date: 'Wed Apr 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 1, y: 17, term: 'bananas' },
+    { date: 'Wed Apr 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 2, y: 16, term: 'bananas' },
+    { date: 'Wed Apr 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 3, y: 17, term: 'bananas' },
+    { date: 'Wed May 06 2015 08:00:00 GMT-0400 (EDT)',
+      x: 4, y: 17, term: 'bananas' },
+    { date: 'Wed May 13 2015 08:00:00 GMT-0400 (EDT)',
+      x: 5, y: 10, term: 'bananas' },
+    { date: 'Wed May 20 2015 08:00:00 GMT-0400 (EDT)',
+      x: 6, y: 18, term: 'bananas' },
+    { date: 'Wed May 27 2015 08:00:00 GMT-0400 (EDT)',
+      x: 7, y: 17, term: 'bananas' },
+    { date: 'Wed Jun 03 2015 08:00:00 GMT-0400 (EDT)',
+      x: 8, y: 16, term: 'bananas' },
+    { date: 'Wed Jun 10 2015 08:00:00 GMT-0400 (EDT)',
+      x: 9, y: 15, term: 'bananas' },
+    { date: 'Wed Jun 17 2015 08:00:00 GMT-0400 (EDT)',
+      x: 10, y: 14, term: 'bananas' },
+    { date: 'Wed Jun 24 2015 08:00:00 GMT-0400 (EDT)',
+      x: 11, y: 16, term: 'bananas' },
+    { date: 'Wed Jul 01 2015 08:00:00 GMT-0400 (EDT)',
+      x: 12, y: 14, term: 'bananas' },
+    { date: 'Wed Jul 08 2015 08:00:00 GMT-0400 (EDT)',
+      x: 13, y: 16, term: 'bananas' },
+    { date: 'Wed Jul 15 2015 08:00:00 GMT-0400 (EDT)',
+      x: 14, y: 19, term: 'bananas' },
+    { date: 'Wed Jul 22 2015 08:00:00 GMT-0400 (EDT)',
+      x: 15, y: 16, term: 'bananas' },
+    { date: 'Wed Jul 29 2015 08:00:00 GMT-0400 (EDT)',
+      x: 16, y: 19, term: 'bananas' },
+    { date: 'Wed Aug 05 2015 08:00:00 GMT-0400 (EDT)',
+      x: 17, y: 18, term: 'bananas' },
+    { date: 'Wed Aug 12 2015 08:00:00 GMT-0400 (EDT)',
+      x: 18, y: 18, term: 'bananas' },
+    { date: 'Wed Aug 19 2015 08:00:00 GMT-0400 (EDT)',
+      x: 19, y: 18, term: 'bananas' },
+    { date: 'Wed Aug 26 2015 08:00:00 GMT-0400 (EDT)',
+      x: 20, y: 16, term: 'bananas' },
+    { date: 'Wed Sep 02 2015 08:00:00 GMT-0400 (EDT)',
+      x: 21, y: 16, term: 'bananas' } ] ]
 
 })

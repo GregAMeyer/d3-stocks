@@ -6,7 +6,7 @@ $silver: #ACACAC;
 
 * {
   box-sizing: border-box;
-  font-family: "Khula"
+  
 }
 html {
     height: 100%;
@@ -28,14 +28,7 @@ body {
 
 @import 'directives/main';
 @import 'home/main';
-@import 'about/main';
-@import 'tutorial/main';
-@import 'login/main';
-/* end fsg defaults */
-
-body {
-  background-image: url('../scss/greenBlueLines.jpg');
-  background-size: 100%;
-}
-
+/*@import 'about/main';*/
+/*@import 'tutorial/main';*/
+/*@import 'login/main';*/
 @import 'directives/main-graph';

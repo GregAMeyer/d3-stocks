@@ -10,7 +10,7 @@ app.directive('mainGraph', function () {
       link: function (scope, element, attrs) {
 //------- SVG DIMENSIONS, SCALES, AXES ---------
 			var margin = 20;
-			var width = 850-(2*margin);
+			var width = 820-(2*margin);
 			var height = 500-(2*margin);
       var realHeight = (2*margin)+height;
 			var xScale = d3.time.scale()
@@ -22,7 +22,7 @@ app.directive('mainGraph', function () {
                     1.05*d3.max(scope.stockdata, function(d) { return d.Close; })] )
 			    .range([height, 0])
 			    .nice();
-      var colorScale = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue", '#00B2B2', '#297ACC'])
+      var colorScale = d3.scale.ordinal().range(["#004C2E", "#64AD4C", "lightblue", '#B8E6B8', '#4D864D'])
 
 			var xAxis = d3.svg.axis()
                           .scale(xScale)
@@ -48,7 +48,7 @@ app.directive('mainGraph', function () {
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
         .attr('class', 'title')
-        .text("Stock Price vs Google Searches !! UNDER CONSTRUCTION !!");
+        .text("Stock Price vs Google Searches");
       svg.append('g')
       	.attr('class', "x axis")
       	.attr('stroke', 'black')
