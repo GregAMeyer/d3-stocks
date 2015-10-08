@@ -1,35 +1,27 @@
 #home {
 
-  #wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-	}
-
-	#wrapper.toggled {
-	    padding-left: 250px;
-	}
+	margin: 20px;
+	height: 650px;
+	border: 1px solid rgba(0,0,0,.65);
 
 	#sidebar-wrapper {
 	    z-index: 1000;
 	    position: fixed;
-	    left: 250px;
-	    width: 0;
-	    height: 100%;
-	    margin-left: -250px;
-	    /*overflow-y: auto;*/
-	    background: black;
-	    opacity: .75;
+	    /*left: 300px;*/
+	    width: 300px;
+	    height: 649px;
+	    /*margin-left: -300px;*/
+	    overflow-y: auto;
+	    background: rgba(0,0,0,.55);
 	    -webkit-transition: all 0.5s ease;
 	    -moz-transition: all 0.5s ease;
 	    -o-transition: all 0.5s ease;
 	    transition: all 0.5s ease;
+
 	}
 
 	#wrapper.toggled #sidebar-wrapper {
-	    width: 250px;
+	    width: 300px;
 	}
 
 	#page-content-wrapper {
@@ -40,7 +32,7 @@
 
 	#wrapper.toggled #page-content-wrapper {
 	    position: absolute;
-	    margin-right: -250px;
+	    margin-right: -300px;
 	}
 
 	/* Sidebar Styles */
@@ -48,28 +40,34 @@
 	.sidebar-nav {
 	    position: absolute;
 	    top: 0;
-	    width: 250px;
+	    width: 300px;
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;
-	}
-
-	.sidebar-nav li {
-	    text-indent: 30px;
-	    line-height: 40px;
-	}
-
-	.sidebar-nav li a {
-	    display: block;
-	    text-decoration: none;
-	    color: white;
+	    li {
+	    	text-indent: 30px;
+	    	.dateDiv {
+	    		margin-left: 50px;	
+	    	}
+	    	table {
+		    	text-indent: 0px;
+		    	line-height: 1.24em;
+	    		button {
+	    			color: white;
+	    			background-color: transparent;
+	    		}	
+	    	}
+	    }
+	    a {
+	    	display: block;
+	    	text-decoration: none;
+	    	color: white;
+	    }
 	}
 
 	.sidebar-nav li a:hover {
 	    text-decoration: none;
-	    color: #fff;
 	}
-
 	.sidebar-nav li a:active,
 	.sidebar-nav li a:focus {
 	    text-decoration: none;
@@ -79,25 +77,78 @@
 	    height: 65px;
 	    font-size: 24px;
 	    line-height: 60px;
+	    a {
+	    	color: $silver;
+	    }
 	}
-
-	.sidebar-nav > .sidebar-brand a {
-	    color: $silver;
-	}
-
 	.sidebar-nav > .sidebar-brand a:hover {
 	    color: #fff;
 	    background: none;
 	}
 
+	.stockSymbInput {
+		margin-left: 36px;
+	}
+	.dateDiv {
+		padding-bottom: 15px;
+	}
+	.row {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-right: 0px;
+		&:hover {
+			background-color: rgba(0,0,0,.25);
+		};
+	}
+	.googleRow {
+		padding-top: 15px;
+	}
+	.stockRow {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.my-datepicker .btn {
+	    padding: 2px 6px;
+	}
+	.dropdown-menu table {
+	  height: 300px;
+	  width: 350px;
+	}
+	.datepickerMove {
+		margin-left: 300px;
+	}
+	.my-datepicker {
+			width: 216px;
+	}
+
+	th .btn-sm {
+		border: none;
+	}
+	small {
+		color: white;
+	}
+	.h6 .ng-binding {
+		color: white;
+	}
+	.select {
+		float: right;
+		padding-right: 20px;
+		font-size: 22px;
+
+	}
+
 	input {
-		margin-left: 30px;
-		height: 32px;
+		margin-left: 10px;
 		vertical-align: center;
 		line-height: 30px;
-		width: 180px;
-		color: $silver;
-
+		width: 140px;
+		border: none;
+		border-radius: 5px;
+		background-color: grey;
+		/*background: -webkit-linear-gradient(left, grey , #546954, grey); 
+  		background: -o-linear-gradient(right, grey , #546954, grey); 
+  		background: -moz-linear-gradient(right, grey , #546954, grey); 
+  		background: linear-gradient(to right, grey , #546954, grey);*/
 		position: relative; 
 		z-index: 100000;
 
@@ -111,19 +162,57 @@
     	}
 	}
 
+	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    white;
+}
+
 	.dataButton {
-		margin-left: 30px;
-		padding: 5px;
+		margin-left: 90px;
+		padding-left: 25px;
+		padding-right: 25px;
 		padding-top: 8px;
-		background-color: $googleGreen;
+		background-color: #4D864D;
 		color: white;
 		&:hover {
       		box-shadow: 0 0 3px $silver;
     	}
 	}
+	.buttonRow {
+		padding-bottom: 15px;
+	}
 
+	/*.oddRow {
+		background-color: rgba(0,0,0,.15);
+		&:hover {
+			background-color: rgba(0,0,0,.25);
+		}; 
+	} 
+	.evenRow {
+		&:hover {
+			background-color: rgba(0,0,0,.25);
+		};
+	}*/
+	a.startDate {
+		padding-top:12px;
+		padding-bottom:12px;
+	}
+	a.endDate {
+		padding-top:12px;
+		padding-bottom:12px;
+	}
 
-	@media(min-width:768px) {
+	/*@media(min-width:768px) {
 	    #wrapper {
 	        padding-left: 250px;
 	    }
@@ -149,6 +238,6 @@
 	        position: relative;
 	        margin-right: 0;
 	    }
-	}
+	}*/
 }
 

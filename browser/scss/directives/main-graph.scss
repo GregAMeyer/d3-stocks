@@ -1,8 +1,9 @@
 
 #mainGraph {
 
-    margin-left: 250px;
-    margin-top: 20px;
+    margin-left: 285px;
+    top: 20px;
+    padding-top: 20px;
 
     path.line {
       fill: none;
@@ -64,5 +65,6 @@
     }
     .title {
       fill: #004C2E;
+      padding-left: 120px;
     }
 }
