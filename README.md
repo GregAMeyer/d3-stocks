@@ -35,6 +35,6 @@ I used several open source technologies for completion of this project:
 
 ####To Do Items
 * Make svg graph responsive to window size
-* Improve the user interface in general - Lighter colors, friendlier/rouder edges, title formatting, fonts, etc.
+* Improve the user interface in general - Graph labels, lighter colors, friendlier/rouder edges, title formatting, etc.
 * Incorporate other forms of social media such as Facebook mentions, instagram mentions, etc. (Twitter did not previously work)
 
