@@ -43,7 +43,7 @@ app.directive('mainGraph', function () {
                                 .attr('transform', "translate("+ (2*margin)+"," + (2*margin) + ")")
                                 .attr('opacity', ".5");
       svg.append("text")
-        .attr("x", (width / 2))             
+        .attr("x", (width / 2+margin))             
         .attr("y",  (margin))
         .attr("text-anchor", "middle")  
         .style("font-size", "24px") 
