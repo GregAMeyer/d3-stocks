@@ -9,7 +9,7 @@ app.directive('mainGraph', function () {
       controller: 'homeDataCtrl',
       link: function (scope, element, attrs) {
 //------- SVG DIMENSIONS, SCALES, AXES ---------
-			var margin = 20;
+			var margin = 30;
 			var width = 820-(2*margin);
 			var height = 500-(2*margin);
       var realHeight = (2*margin)+height;
@@ -49,6 +49,16 @@ app.directive('mainGraph', function () {
         .style("font-size", "24px") 
         .attr('class', 'title')
         .text("Stock Price vs Google Searches");
+      svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("transform", "translate("+ (margin-5) +","+(height/2+margin)+")rotate(-90)")
+        .style("font-size", "18px")
+        .text("Stock Price");
+      svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("transform", "translate("+ (width+(3*margin+15)) +","+(height/2+margin)+")rotate(90)")
+        .style("font-size", "18px")
+        .text("Google Trend");
       svg.append('g')
       	.attr('class', "x axis")
       	.attr('stroke', 'black')

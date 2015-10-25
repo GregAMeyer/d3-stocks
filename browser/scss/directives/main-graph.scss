@@ -25,6 +25,7 @@
         /*font-family: sans-serif;*/
         stroke: black;
         font-weight: 300;
+        fill: black;
     }
 
     .x.axis line {
@@ -59,9 +60,9 @@
       fill: black
     }
     text {
-      /*stroke: white;*/
-      stroke: none;
-      fill: white;
+      stroke: black;
+      /*stroke: none;*/
+      /*fill: black;*/
     }
     .title {
       fill: #004C2E;
