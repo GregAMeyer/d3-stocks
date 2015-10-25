@@ -3,7 +3,7 @@
 
 This is the second project of the senior phase at Fullstack Academy of Code. It is a stock-analysis tool for visualizing data not traditionally associated with stocks. Utilizes D3 to show the relationship between a stock price and a Google keyword search volume over time.
 
-![under construction screen shot with stacked bars](https://github.com/GregAMeyer/d3-stocks/blob/master/5%20stacked%20bars%20screenshot.png)
+![under construction screen shot with stacked bars](https://github.com/GregAMeyer/d3-stocks/blob/master/screenshot%20newer%20ui.png)
 
 ## Motivation
 
@@ -34,8 +34,7 @@ I used several open source technologies for completion of this project:
   * Express
 
 ####To Do Items
-* Support multiple google trend keywords via stacked bar chart (in process)
 * Make svg graph responsive to window size
-* Improve the user interface in general - Lighter colors, friendlier/rouder edges, title formatting, fonts, etc.
+* Improve the user interface in general - Graph labels, lighter colors, friendlier/rouder edges, title formatting, etc.
 * Incorporate other forms of social media such as Facebook mentions, instagram mentions, etc. (Twitter did not previously work)
 
